@@ -53,10 +53,38 @@ class Game extends Player {
     });
   }
 
+  poolBernard() {
+    this.bernardGroup = this.add.group({
+      removeCallback: (bernard) => this.bernardPool.add(bernard),
+    });
+
+    this.bernardPool = this.add.group({
+      removeCallback: (bernard) => this.bernardGroup.add(bernard),
+    });
+  }
+
+  letBernardKillPlayer() {
+    this.physics.add.overlap(
+      this.player,
+      this.bernardGroup,
+      (player, bernard) => {
+        this.dying = true;
+        this.player.anims.stop();
+        this.player.setFrame(3);
+        this.player.body.setVelocityY(-200);
+        this.physics.world.removeCollider(this.platformCollider);
+      },
+      null,
+      this
+    );
+  }
+
   create() {
     super.create();
     this.poolGems();
     this.letPlayerCollectWithGems();
+    this.poolBernard();
+    this.letBernardKillPlayer();
   }
   update() {
     super.update();
