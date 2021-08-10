@@ -21,6 +21,7 @@ export const gameConfig = {
   width: screen.availWidth,
   height: screen.availHeight,
   scene: [PreloadGame, Game],
+  backgroundColor: "#4488aa",
   physics: {
     default: "arcade",
   },

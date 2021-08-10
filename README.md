@@ -129,3 +129,12 @@ Give a ⭐️ if you like this project!
 ### Attributions
 
 Some of the webpack Plugins and loaders are from the template found here :point_right: [Click me for the template](https://github.com/photonstorm/phaser3-project-template)
+
+
+
+
+
+
+
+
+
