@@ -4,6 +4,30 @@ class Game extends Background {
     super("Game");
   }
 
+  addPlatform(platformWidth, posX, posY) {
+    this.addedPlatforms += 1;
+    let platform;
+    if (this.platformPool.getLength()) {
+      platform = this.platformPool.getFirst();
+      platform.x = posX;
+      platform.y = posY;
+      platform.active = true;
+      platform.visible = true;
+      this.platformPool.remove(platform);
+      platform.displayWidth = platformWidth;
+    } else {
+      platform = this.add.tileSprite(posX, posY, platformWidth, 32, "platform");
+      this.physics.add.existing(platform);
+      platform.body.setImmovable(true);
+      platform.body.setVelocityX(
+        Phaser.Math.Between(...gameOptions.platformSpeedRange) * -1
+      );
+      this.platformGroup.add(platform);
+      platform.setDepth(2);
+    }
+    this.nextPlatformDistance = Phaser.Math.Between(...gameOptions.spawnRange);
+  }
+
   preload() {}
   create() {
     super.create();
