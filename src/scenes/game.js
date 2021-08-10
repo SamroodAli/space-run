@@ -17,6 +17,7 @@ class Game extends Platform {
   }
 
   runOnPlatform() {
+    this.playerJumps = 0;
     if (!this.player.anims.isPlaying) {
       this.player.anims.play("run");
     }
@@ -32,7 +33,6 @@ class Game extends Platform {
   }
 
   letPlayerJump() {
-    this.playerJumps = 0;
     this.input.keyboard.on("keydown-SPACE", this.jump, this);
     this.input.on("pointerdown", this.jump, this);
   }
@@ -54,6 +54,9 @@ class Game extends Platform {
   update() {
     super.update();
     this.player.x = gameOptions.playerStartPosition;
+    if (!this.player.body.touching.down) {
+      this.player.anims.play("jump");
+    }
   }
 }
 
