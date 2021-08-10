@@ -12,3 +12,12 @@ export const gameOptions = {
   jumps: 2,
   coinPercent: 25,
 };
+
+export const gameConfig = {
+  type: Phaser.Auto,
+  width: screen.availWidth,
+  height: screen.availHeight,
+  physics: {
+    default: "arcade",
+  },
+};
