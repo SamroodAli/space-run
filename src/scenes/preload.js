@@ -10,6 +10,9 @@ import gemBlue from "../assets/items/gemBlue.png";
 import gemGreen from "../assets/items/gemGreen.png";
 import gemRed from "../assets/items/gemRed.png";
 import gemYellow from "../assets/items/gemYellow.png";
+import slimeBlue from "../assets/enemies/slimeBlue.png";
+import slimeBlueMove from "../assets/enemies/slimeBlue_move.png";
+import slimeBlueHit from "../assets/enemies/slimeBlue_hit.spng";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -56,6 +59,26 @@ class PreloadGame extends Phaser.Scene {
       frameHeight: 48,
     });
     this.load.image("gemYellow", gemYellow, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+
+    this.load.image("gemYellow", gemYellow, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+
+    this.load.image("slimeBlue", slimeBlue, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+
+    this.load.image("slimeBlueHit", slimeBlueHit, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+
+    this.load.image("slimeBlueMove", slimeBlueMove, {
       frameWidth: 32,
       frameHeight: 48,
     });
