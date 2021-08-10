@@ -54,7 +54,7 @@ class Platform extends Background {
         }
         gem.setScale(0.75);
         gem.setDepth(2);
-        gem.anims.play("colorful");
+        gem.anims.play("changeColor");
       }
     }
 
