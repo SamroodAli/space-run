@@ -7,6 +7,9 @@ import blueLand from "../assets/background/blue_land.png";
 import mountain from "../assets/background/mountain.png";
 import platform from "../assets/platform/planetMid.png";
 import gemBlue from "../assets/items/gemBlue.png";
+import gemGreen from "../assets/items/gemGreen.png";
+import gemRed from "../assets/items/gemRed.png";
+import gemYellow from "../assets/items/gemYellow.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -41,6 +44,18 @@ class PreloadGame extends Phaser.Scene {
       frameHeight: 512,
     });
     this.load.image("gemBlue", gemBlue, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+    this.load.image("gemGreen", gemGreen, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+    this.load.image("gemRed", gemRed, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+    this.load.image("gemYellow", gemYellow, {
       frameWidth: 32,
       frameHeight: 48,
     });
