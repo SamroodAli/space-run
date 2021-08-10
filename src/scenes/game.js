@@ -10,8 +10,34 @@ class Game extends Player {
     this.scene.stop();
     this.scene.start("PreloadGame");
   };
+
+  poolGems() {
+    this.gemGroup = this.add.group({
+      removeCallback: (gem) => this.gemPool.add(gem),
+    });
+
+    this.gemPool = this.add.group({
+      removeCallback: (gem) => this.gemGroup.add(gem),
+    });
+  }
+
+  letPlayerCollectWithGems() {
+    this.physics.add.overlap(
+      this.player,
+      this.gemGroup,
+      function (player, gem) {
+        this.gemGroup.killAndHide(gem);
+        this.gemGroup.remove(gem);
+      },
+      null,
+      this
+    );
+  }
+
   create() {
     super.create();
+    this.poolGems();
+    this.letPlayerCollectWithGems();
   }
   update() {
     super.update();
