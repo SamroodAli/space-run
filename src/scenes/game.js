@@ -14,6 +14,21 @@ class Game extends Platform {
     this.player.setScale(0.5);
     this.player.setDepth(2);
     this.player.setGravityY(gameOptions.playerGravity);
+    this.platformCollider = this.physics.add.collider(
+      this.player,
+      this.platformGroup,
+      () => {
+        if (!this.player.anims.isPlaying) {
+          this.player.anims.play("run");
+        }
+      },
+      null,
+      this
+    );
+  }
+  update() {
+    super.update();
+    this.player.x = gameOptions.playerStartPosition;
   }
 }
 
