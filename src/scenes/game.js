@@ -8,6 +8,8 @@ class Game extends Phaser.Scene {
   preload() {}
   create() {
     this.setBackground();
+    // mountain setup
+    this.mountainGroup = this.add.group();
   }
 
   setBackground() {
