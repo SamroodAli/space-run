@@ -7,8 +7,10 @@ class Game extends Phaser.Scene {
   }
   preload() {}
   create() {
-    console.log("game loaded");
-    // Create background
+    this.setBackground();
+  }
+
+  setBackground() {
     this.background = this.add
       .image(gameConfig.width / 2, gameConfig.height / 2, "blueLand")
       .setScrollFactor(1, 0);
