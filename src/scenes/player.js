@@ -17,7 +17,9 @@ class Player extends Platform {
   }
 
   runOnPlatform() {
-    this.playerJumps = 0;
+    if (this.player.body.touching.down) {
+      this.playerJumps = 0;
+    }
     if (!this.player.anims.isPlaying) {
       this.player.anims.play("run");
     }

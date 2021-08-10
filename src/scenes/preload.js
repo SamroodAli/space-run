@@ -85,14 +85,14 @@ class PreloadGame extends Phaser.Scene {
       frameRate: 20,
     });
     this.anims.create({
-      key: "rotate",
+      key: "colorful",
       frames: [
         { key: "gemBlue" },
         { key: "gemGreen" },
         { key: "gemRed" },
         { key: "gemYellow" },
       ],
-      frameRate: 10,
+      frameRate: 2,
       yoyo: true,
       repeat: -1,
     });
