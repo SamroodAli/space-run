@@ -38,6 +38,51 @@ class Game extends Background {
     this.nextPlatformDistance = Phaser.Math.Between(...gameOptions.spawnRange);
   }
 
+  recyclePlatform() {
+    let minDistance = gameConfig.width;
+    let rightmostPlatformHeightFromBottom = 0;
+
+    this.platformGroup.getChildren().forEach((platform) => {
+      let platformDistance =
+        gameConfig.width - (platform.x + platform.displayWidth / 2);
+
+      if (platformDistance < minDistance) {
+        minDistance = platformDistance;
+        rightmostPlatformHeightFromBottom = platform.y;
+      }
+
+      if (platform.x < -platform.displayWidth / 2) {
+        this.platformGroup.killAndHide(platform);
+        this.platformGroup.remove(platform);
+      }
+    }, this);
+
+    if (minDistance > this.nextPlatformDistance) {
+      let nextPlatformWidth = Phaser.Math.Between(
+        ...gameOptions.platformSizeRange
+      );
+      let platformRandomHeight =
+        gameOptions.platformHeightScale *
+        Phaser.Math.Between(...gameOptions.platformHeightRange);
+      let nextPlatformGap =
+        rightmostPlatformHeightFromBottom + platformRandomHeight;
+      let minPlatformHeight =
+        gameConfig.height * gameOptions.platformVerticalLimit[0];
+      let maxPlatformHeight =
+        gameConfig.height * gameOptions.platformVerticalLimit[1];
+      let nextPlatformHeight = Phaser.Math.Clamp(
+        nextPlatformGap,
+        minPlatformHeight,
+        maxPlatformHeight
+      );
+      this.addPlatform(
+        nextPlatformWidth,
+        gameConfig.width + nextPlatformWidth / 2,
+        nextPlatformHeight
+      );
+    }
+  }
+
   create() {
     super.create();
     this.addedPlatforms = 0;
@@ -51,6 +96,7 @@ class Game extends Background {
 
   update() {
     super.update();
+    this.recyclePlatform();
   }
 }
 export default Game;
