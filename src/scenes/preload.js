@@ -1,6 +1,7 @@
 import Phaser from "phaser";
-import player1 from "../assets/player/Blue/alienBlue_walk1.png";
-import player2 from "../assets/player/Blue/alienBlue_walk2.png";
+import player from "../assets/player/Blue/alienBlue_walk1.png";
+import playerRun from "../assets/player/Blue/alienBlue_walk2.png";
+import playerJump from "../assets/player/Blue/alienBlue_jump.png";
 import blueLand from "../assets/background/blue_land.png";
 import mountain from "../assets/background/mountain.png";
 import platform from "../assets/platform/planetMid.png";
@@ -14,12 +15,17 @@ class PreloadGame extends Phaser.Scene {
   preload() {
     this.load.image("blueLand", blueLand);
     this.load.image("platform", platform);
-    this.load.spritesheet("player", player1, {
+    this.load.image("player", player, {
       frameWidth: 200,
       frameHeight: 200,
     });
 
-    this.load.spritesheet("playerRun", player2, {
+    this.load.image("playerRun", playerRun, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("playerJump", playerJump, {
       frameWidth: 200,
       frameHeight: 200,
     });
@@ -41,6 +47,11 @@ class PreloadGame extends Phaser.Scene {
       frames: [{ key: "player" }, { key: "playerRun" }],
       frameRate: 10,
       repeat: -1,
+    });
+    this.anims.create({
+      key: "jump",
+      frames: [{ key: "playerJump" }],
+      frameRate: 20,
     });
 
     this.scene.start("Game");
