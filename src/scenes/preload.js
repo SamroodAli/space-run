@@ -14,7 +14,7 @@ import slimeBlue from "../assets/enemies/slimeBlue.png";
 import slimeBlueMove from "../assets/enemies/slimeBlue_move.png";
 import slimeBlueHit from "../assets/enemies/slimeBlue_hit.spng";
 import bernard from "../assets/enemies/barnacle.png";
-import bernardAttach from "../assets/enemies/barnacle_attack.png";
+import bernardAttack from "../assets/enemies/barnacle_attack.png";
 
 import { gameConfig } from "../gameOptions.js";
 
