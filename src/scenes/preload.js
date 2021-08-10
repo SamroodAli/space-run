@@ -6,6 +6,7 @@ import playerHit from "../assets/player/Blue/alienBlue_hit.png";
 import blueLand from "../assets/background/blue_land.png";
 import mountain from "../assets/background/mountain.png";
 import platform from "../assets/platform/planetMid.png";
+import gemBlue from "../assets/items/gemBlue.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -38,6 +39,10 @@ class PreloadGame extends Phaser.Scene {
     this.load.spritesheet("mountain", mountain, {
       frameWidth: 512,
       frameHeight: 512,
+    });
+    this.load.sprite("gemBlue", gemBlue, {
+      frameWidth: 32,
+      frameHeight: 48,
     });
   }
 
