@@ -1,3 +1,6 @@
+import Game from "./scenes/game.js";
+import PreloadGame from "./scenes/preload.js";
+
 export const gameOptions = {
   platformSpaceRange: [300, 400],
   mountainSpeed: 80,
@@ -17,6 +20,7 @@ export const gameConfig = {
   type: Phaser.Auto,
   width: screen.availWidth,
   height: screen.availHeight,
+  scene: [PreloadGame, Game],
   physics: {
     default: "arcade",
   },
