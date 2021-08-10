@@ -3,6 +3,8 @@ import player1 from "../assets/player/Blue/alienBlue_walk1.png";
 import player2 from "../assets/player/Blue/alienBlue_walk2.png";
 import blueLand from "../assets/background/blue_land.png";
 import mountain from "../assets/background/mountain.png";
+import platform from "../assets/platform/elementMetal013.png";
+
 import { gameConfig } from "../gameOptions.js";
 
 class PreloadGame extends Phaser.Scene {
@@ -11,6 +13,7 @@ class PreloadGame extends Phaser.Scene {
   }
   preload() {
     this.load.image("blueLand", blueLand);
+    this.load.image("platform", platform);
     this.load.spritesheet("player", player1, {
       frameWidth: 200,
       frameHeight: 200,
