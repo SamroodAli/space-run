@@ -21,7 +21,7 @@ class Game extends Platform {
       this.player.anims.play("run");
     }
   }
-  collisionWithPlatform() {
+  letPlayerCollideWithPlatform() {
     this.platformCollider = this.physics.add.collider(
       this.player,
       this.platformGroup,
@@ -34,7 +34,7 @@ class Game extends Platform {
   create() {
     super.create();
     this.createPlayer();
-    this.collisionWithPlatform();
+    this.letPlayerCollideWithPlatform();
   }
   update() {
     super.update();
