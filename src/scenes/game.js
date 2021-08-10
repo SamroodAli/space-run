@@ -34,6 +34,15 @@ class Game extends Player {
     );
   }
 
+  recycleCoins() {
+    this.coinGroup.getChildren().forEach((coin) => {
+      if (coin.x < coin.displayWidth / 2) {
+        this.coinGroup.killAndHide(coin);
+        this.coinGroup.remove(coin);
+      }
+    });
+  }
+
   create() {
     super.create();
     this.poolGems();
@@ -54,6 +63,7 @@ class Game extends Player {
       );
       this.time.delayedCall(1000, this.restartGame, null, this); // delay in ms
     }
+    this.recycleCoins();
   }
 }
 
