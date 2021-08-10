@@ -63,6 +63,15 @@ class Game extends Player {
     });
   }
 
+  recycleBernard() {
+    this.bernardGroup.getChildren().forEach((bernard) => {
+      if (bernard.x < bernard.displayWidth / 2) {
+        this.bernardGroup.killAndHide(bernard);
+        this.bernardGroup.remove(bernard);
+      }
+    });
+  }
+
   letBernardKillPlayer() {
     this.physics.add.overlap(
       this.player,
