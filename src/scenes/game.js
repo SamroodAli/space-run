@@ -4,6 +4,15 @@ class Game extends Background {
     super("Game");
   }
 
+  poolPlatforms() {
+    this.platformGroup = this.add.group({
+      removeCallback: (platform) => this.platformPool.add(platform),
+    });
+    this.platformPool = this.add.group({
+      removeCallback: (platform) => this.platformGroup.add(platform),
+    });
+  }
+
   addPlatform(platformWidth, posX, posY) {
     this.addedPlatforms += 1;
     let platform;
@@ -28,17 +37,17 @@ class Game extends Background {
     this.nextPlatformDistance = Phaser.Math.Between(...gameOptions.spawnRange);
   }
 
-  preload() {}
   create() {
     super.create();
     this.addedPlatforms = 0;
-    this.platformGroup = this.add.group({
-      removeCallback: (platform) => this.platformPool.add(platform),
-    });
-    this.platformPool = this.add.group({
-      removeCallback: (platform) => this.platformGroup.add(platform),
-    });
+    this.poolPlatforms();
+    this.addPlatform(
+      gameConfig.width,
+      gameConfig.width / 2,
+      gameConfig.height * gameOptions.platformVerticalLimit[1]
+    );
   }
+
   update() {
     super.update();
   }
