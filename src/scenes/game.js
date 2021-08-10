@@ -16,7 +16,7 @@ class Game extends Platform {
     this.player.setGravityY(gameOptions.playerGravity);
   }
 
-  onPlatform() {
+  runOnPlatform() {
     if (!this.player.anims.isPlaying) {
       this.player.anims.play("run");
     }
@@ -25,16 +25,24 @@ class Game extends Platform {
     this.platformCollider = this.physics.add.collider(
       this.player,
       this.platformGroup,
-      this.onPlatform,
+      this.runOnPlatform,
       null,
       this
     );
+  }
+  jump() {
+    if (!this.dying && this.playerJumps < gameOptions.jumps) {
+      this.player.setVelocityY(gameOptions.jumpForce * -1);
+      this.playerJumps++;
+    }
   }
 
   create() {
     super.create();
     this.createPlayer();
     this.letPlayerCollideWithPlatform();
+    this.dying = false;
+    this.playerJumps = 0;
   }
   update() {
     super.update();
