@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { gameConfig } from "../gameOptions.js";
+import { gameConfig, gameOptions } from "../gameOptions.js";
 
 class Game extends Phaser.Scene {
   constructor() {
@@ -13,7 +13,22 @@ class Game extends Phaser.Scene {
     return lastMountainX;
   }
   addMountains() {
-    let lastMountainX = this.getLastMountainX();
+    const lastMountainX = this.getLastMountainX();
+    if (lastMountainX < gameConfig.width * 2) {
+      let mountain = this.physics.add.sprite(
+        lastMountainX + Phaser.Math.Between(100, 350),
+        gameConfig.height + Phaser.Math.Between(0, 100),
+        "mountain"
+      );
+      mountain.setOrigin(0.5, 1);
+      mountain.body.setVelocityX(gameOptions.mountainSpeed * -1);
+      this.mountainGroup.addMultiple(mountain);
+      if (Phaser.Math.Between(0, 1)) {
+        mountain.setDepth(1);
+      }
+      mountain.setFrame(Phaser.Math.Between(0, 3));
+      this.addMountains();
+    }
   }
   preload() {}
   create() {
