@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 class Game extends Phaser.Scene {
   constructor() {
-    super("game");
+    super("Game");
   }
   preload() {}
   create() {}
