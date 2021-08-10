@@ -26,19 +26,29 @@ class Game extends Player {
       this.player,
       this.gemGroup,
       function (player, gem) {
-        this.gemGroup.killAndHide(gem);
-        this.gemGroup.remove(gem);
+        this.tweens.add({
+          targets: gem,
+          y: gem.y - 100,
+          alpha: 0,
+          duration: 800,
+          ease: "Cubic.easeOut",
+          callbackScope: this,
+          onComplete: function () {
+            this.gemGroup.killAndHide(gem);
+            this.gemGroup.remove(gem);
+          },
+        });
       },
       null,
       this
     );
   }
 
-  recycleCoins() {
-    this.coinGroup.getChildren().forEach((coin) => {
-      if (coin.x < coin.displayWidth / 2) {
-        this.coinGroup.killAndHide(coin);
-        this.coinGroup.remove(coin);
+  recyclegems() {
+    this.gemGroup.getChildren().forEach((gem) => {
+      if (gem.x < gem.displayWidth / 2) {
+        this.gemGroup.killAndHide(gem);
+        this.gemGroup.remove(gem);
       }
     });
   }
@@ -63,7 +73,7 @@ class Game extends Player {
       );
       this.time.delayedCall(1000, this.restartGame, null, this); // delay in ms
     }
-    this.recycleCoins();
+    this.recyclegems();
   }
 }
 

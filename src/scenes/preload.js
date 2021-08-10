@@ -40,7 +40,7 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 512,
       frameHeight: 512,
     });
-    this.load.sprite("gemBlue", gemBlue, {
+    this.load.image("gemBlue", gemBlue, {
       frameWidth: 32,
       frameHeight: 48,
     });
