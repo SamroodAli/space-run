@@ -13,6 +13,8 @@ import gemYellow from "../assets/items/gemYellow.png";
 import slimeBlue from "../assets/enemies/slimeBlue.png";
 import slimeBlueMove from "../assets/enemies/slimeBlue_move.png";
 import slimeBlueHit from "../assets/enemies/slimeBlue_hit.spng";
+import bernard from "../assets/enemies/barnacle.png";
+import bernardAttach from "../assets/enemies/barnacle_attack.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -79,6 +81,14 @@ class PreloadGame extends Phaser.Scene {
     });
 
     this.load.image("slimeBlueMove", slimeBlueMove, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+    this.load.image("bernard", bernard, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+    this.load.image("bernardAttack", bernardAttack, {
       frameWidth: 32,
       frameHeight: 48,
     });
