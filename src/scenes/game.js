@@ -1,4 +1,5 @@
 import Background from "./background.js";
+import { gameConfig, gameOptions } from "../gameOptions.js";
 class Game extends Background {
   constructor() {
     super("Game");

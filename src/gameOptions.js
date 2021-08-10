@@ -2,7 +2,7 @@ import Game from "./scenes/game.js";
 import PreloadGame from "./scenes/preload.js";
 
 export const gameOptions = {
-  platformSpaceRange: [300, 400],
+  platformSpeedRange: [300, 400],
   mountainSpeed: 80,
   spawnRange: [80, 300],
   platformSizeRange: [90, 300],

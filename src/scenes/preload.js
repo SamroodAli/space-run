@@ -3,7 +3,7 @@ import player1 from "../assets/player/Blue/alienBlue_walk1.png";
 import player2 from "../assets/player/Blue/alienBlue_walk2.png";
 import blueLand from "../assets/background/blue_land.png";
 import mountain from "../assets/background/mountain.png";
-import platform from "../assets/platform/elementMetal013.png";
+import platform from "../assets/platform/planetMid.png";
 
 import { gameConfig } from "../gameOptions.js";
 
