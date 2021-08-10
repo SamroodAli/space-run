@@ -5,11 +5,21 @@ class Game extends Phaser.Scene {
   constructor() {
     super("Game");
   }
+  getLastMountainX() {
+    let lastMountainX = -200;
+    this.mountainGroup.getChildren().forEach((mountain) => {
+      lastMountainX = Math.max(lastMountainX, mountain.x);
+    });
+    return lastMountainX;
+  }
+  addMountains() {
+    let lastMountainX = this.getLastMountainX();
+  }
   preload() {}
   create() {
     this.setBackground();
-    // mountain setup
     this.mountainGroup = this.add.group();
+    this.addMountains();
   }
 
   setBackground() {
