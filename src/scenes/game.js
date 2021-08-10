@@ -4,8 +4,8 @@ class Game extends Platform {
   constructor() {
     super("Game");
   }
-  create() {
-    super.create();
+
+  createPlayer() {
     this.player = this.physics.add.sprite(
       gameOptions.playerStartPosition,
       gameConfig.height / 2,
@@ -14,17 +14,27 @@ class Game extends Platform {
     this.player.setScale(0.5);
     this.player.setDepth(2);
     this.player.setGravityY(gameOptions.playerGravity);
+  }
+
+  onPlatform() {
+    if (!this.player.anims.isPlaying) {
+      this.player.anims.play("run");
+    }
+  }
+  collisionWithPlatform() {
     this.platformCollider = this.physics.add.collider(
       this.player,
       this.platformGroup,
-      () => {
-        if (!this.player.anims.isPlaying) {
-          this.player.anims.play("run");
-        }
-      },
+      this.onPlatform,
       null,
       this
     );
+  }
+
+  create() {
+    super.create();
+    this.createPlayer();
+    this.collisionWithPlatform();
   }
   update() {
     super.update();
