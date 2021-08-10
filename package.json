@@ -1,0 +1,54 @@
+{
+  "name": "project-name",
+  "version": "1.0.0",
+  "description": "Project description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack/webpack.config.prod.js",
+    "live": "git subtree push --prefix dist origin gh-pages",
+    "publish": "npm run build;npm run live",
+    "dev": "webpack serve --config webpack/webpack.config.dev.js",
+    "serve": "serve dist",
+    "lint": "npx stylelint '**/*.{css,scss}' --fix",
+    "hint": "npx hint --telemetry=off .",
+    "eslint": "npx eslint . --fix",
+    "linters": "npm run lint;npm run eslint;npm run hint"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "homepage": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "*",
+    "css-loader": "^5.2.6",
+    "dotenv-webpack": "^7.0.3",
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "file-loader": "^6.2.0",
+    "hint": "^6.1.4",
+    "html-webpack-plugin": "^5.3.2",
+    "sass": "^1.35.2",
+    "sass-loader": "^12.1.0",
+    "serve": "^12.0.0",
+    "style-loader": "^3.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.19.0",
+    "url-loader": "^4.1.1",
+    "terser-webpack-plugin": "^5.1.4",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "phaser": "^3.55.2"
+  }
+}
