@@ -20,7 +20,13 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 200,
       frameHeight: 200,
     });
+
+    this.load.spritesheet("mountain", mountain, {
+      frameWidth: 512,
+      frameHeight: 512,
+    });
   }
+
   create() {
     this.background = this.add
       .image(gameConfig.width / 2, gameConfig.height / 2, "blueLand")
