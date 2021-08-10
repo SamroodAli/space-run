@@ -12,9 +12,9 @@ import gemRed from "../assets/items/gemRed.png";
 import gemYellow from "../assets/items/gemYellow.png";
 import slimeBlue from "../assets/enemies/slimeBlue.png";
 import slimeBlueMove from "../assets/enemies/slimeBlue_move.png";
-import slimeBlueHit from "../assets/enemies/slimeBlue_hit.spng";
-import bernard from "../assets/enemies/barnacle.png";
-import bernardAttack from "../assets/enemies/barnacle_attack.png";
+import slimeBlueHit from "../assets/enemies/slimeBlue_hit.png";
+import barnacle from "../assets/enemies/barnacle_attack.png";
+import barnacleOpen from "../assets/enemies/barnacle.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -84,13 +84,13 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     });
-    this.load.image("bernard", bernard, {
+    this.load.image("barnacle", barnacle, {
       frameWidth: 32,
       frameHeight: 48,
     });
-    this.load.image("bernardAttack", bernardAttack, {
-      frameWidth: 32,
-      frameHeight: 48,
+    this.load.image("barnacleOpen", barnacleOpen, {
+      frameWidth: 40,
+      frameHeight: 70,
     });
   }
 
@@ -131,9 +131,9 @@ class PreloadGame extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: "bernardAttack",
-      frames: [{ key: "bernard" }, { key: "bernardAttack" }],
-      frameRate: 2,
+      key: "barnacleAttack",
+      frames: [{ key: "barnacle" }, { key: "barnacleOpen" }],
+      frameRate: 10,
       yoyo: true,
       repeat: -1,
     });

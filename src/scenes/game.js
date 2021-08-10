@@ -53,30 +53,30 @@ class Game extends Player {
     });
   }
 
-  poolBernard() {
-    this.bernardGroup = this.add.group({
-      removeCallback: (bernard) => this.bernardPool.add(bernard),
+  poolbarnacle() {
+    this.barnacleGroup = this.add.group({
+      removeCallback: (barnacle) => this.barnaclePool.add(barnacle),
     });
 
-    this.bernardPool = this.add.group({
-      removeCallback: (bernard) => this.bernardGroup.add(bernard),
+    this.barnaclePool = this.add.group({
+      removeCallback: (barnacle) => this.barnacleGroup.add(barnacle),
     });
   }
 
-  recycleBernard() {
-    this.bernardGroup.getChildren().forEach((bernard) => {
-      if (bernard.x < bernard.displayWidth / 2) {
-        this.bernardGroup.killAndHide(bernard);
-        this.bernardGroup.remove(bernard);
+  recyclebarnacle() {
+    this.barnacleGroup.getChildren().forEach((barnacle) => {
+      if (barnacle.x < barnacle.displayWidth / 2) {
+        this.barnacleGroup.killAndHide(barnacle);
+        this.barnacleGroup.remove(barnacle);
       }
     });
   }
 
-  letBernardKillPlayer() {
+  letbarnacleKillPlayer() {
     this.physics.add.overlap(
       this.player,
-      this.bernardGroup,
-      (player, bernard) => {
+      this.barnacleGroup,
+      (player, barnacle) => {
         this.dying = true;
         this.player.anims.stop();
         this.player.setFrame(3);
@@ -92,8 +92,8 @@ class Game extends Player {
     super.create();
     this.poolGems();
     this.letPlayerCollectWithGems();
-    this.poolBernard();
-    this.letBernardKillPlayer();
+    this.poolbarnacle();
+    this.letbarnacleKillPlayer();
   }
   update() {
     super.update();
@@ -111,6 +111,7 @@ class Game extends Player {
       this.time.delayedCall(1000, this.restartGame, null, this); // delay in ms
     }
     this.recyclegems();
+    this.recyclebarnacle();
   }
 }
 

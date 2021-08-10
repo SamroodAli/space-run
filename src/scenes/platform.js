@@ -41,10 +41,11 @@ class Platform extends Background {
         if (this.gemPool.getLength()) {
           gem = this.gemPool.getFirst();
           gem.x = posX;
-          gem.y = posY - 96;
+          gem.y = posY - 46;
           gem.alpha = 1;
           gem.active = true;
           gem.visible = true;
+          gem.setVelocityX(platform.body.velocity.x);
           this.gemPool.remove(gem);
         } else {
           gem = this.physics.add.sprite(posX, posY - 60, "gemBlue");
@@ -55,6 +56,33 @@ class Platform extends Background {
         gem.setScale(0.75);
         gem.setDepth(2);
         gem.anims.play("changeColor");
+      }
+    }
+
+    if (Phaser.Math.Between(0, 100) < gameOptions.barnaclePercent) {
+      const startPlatform = posX - platformWidth / 2;
+      const barnacleX =
+        startPlatform + Phaser.Math.Between(10, platformWidth - 10);
+      const barnacleY = posY - 2 * platform.height;
+      if (this.barnaclePool.getLength()) {
+        let barnacle = this.barnaclePool.getFirst();
+        barnacle.x = barnacleX;
+        barnacle.y = barnacleY;
+        barnacle.alpha = 1;
+        barnacle.active = true;
+        barnacle.visible = true;
+        barnacle.setVelocityX(platform.body.velocity.x);
+        this.barnaclePool.remove(barnacle);
+      } else {
+        let barnacle = this.physics.add
+          .sprite(barnacleX, barnacleY, "barnacle")
+          .setScale(0.75);
+        barnacle.setImmovable(true);
+        barnacle.setVelocityX(platform.body.velocity.x);
+        barnacle.setSize(8, 2, true);
+        barnacle.anims.play("barnacleAttack");
+        barnacle.setDepth(2);
+        this.barnacleGroup.add(barnacle);
       }
     }
 
