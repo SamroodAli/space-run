@@ -30,10 +30,17 @@ class Game extends Platform {
       this
     );
   }
+
+  letPlayerJump() {
+    this.playerJumps = 0;
+    this.input.keyboard.on("keydown-SPACE", this.jump, this);
+    this.input.on("pointerdown", this.jump, this);
+  }
+
   jump() {
     if (!this.dying && this.playerJumps < gameOptions.jumps) {
       this.player.setVelocityY(gameOptions.jumpForce * -1);
-      this.playerJumps++;
+      this.playerJumps += 1;
     }
   }
 
@@ -41,8 +48,8 @@ class Game extends Platform {
     super.create();
     this.createPlayer();
     this.letPlayerCollideWithPlatform();
+    this.letPlayerJump();
     this.dying = false;
-    this.playerJumps = 0;
   }
   update() {
     super.update();
