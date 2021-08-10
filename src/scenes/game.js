@@ -1,6 +1,6 @@
 import Platform from "./platform.js";
 import { gameConfig, gameOptions } from "../gameOptions.js";
-class Game extends Platform {
+class Player extends Platform {
   constructor() {
     super("Game");
   }
@@ -60,4 +60,4 @@ class Game extends Platform {
   }
 }
 
-export default Game;
+export default Player;
