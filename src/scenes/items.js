@@ -58,6 +58,41 @@ class Items extends Background {
     });
   }
 
+  addGemOnPlatform(posX, posY, platform) {
+    if (this.addedPlatforms > 1) {
+      if (Phaser.Math.Between(1, 100) <= gameOptions.coinPercent) {
+        let gem;
+        if (this.gemPool.getLength()) {
+          gem = this.gemPool.getFirst();
+          gem.x = posX;
+          gem.y = posY - 46;
+          gem.alpha = 1;
+          gem.active = true;
+          gem.visible = true;
+          gem.setVelocityX(platform.body.velocity.x);
+          this.gemPool.remove(gem);
+        } else {
+          gem = this.physics.add.sprite(posX, posY - 60, this.nextGem());
+          gem.setImmovable = true;
+          gem.setVelocityX(platform.body.velocity.x);
+          this.gemGroup.add(gem);
+        }
+        gem.setScale(0.75);
+        gem.setDepth(2);
+      }
+    }
+  }
+
+  poolBees() {
+    this.beesGroup = this.add.group({
+      removeCallback: (bee) => this.beesPool.add(bee),
+    });
+
+    this.beesPool = this.add.group({
+      removeCallback: (bee) => this.beesGroup.add(bee),
+    });
+  }
+
   poolbarnacle() {
     this.barnacleGroup = this.add.group({
       removeCallback: (barnacle) => this.barnaclePool.add(barnacle),
@@ -90,31 +125,6 @@ class Items extends Background {
       null,
       this
     );
-  }
-
-  addGemOnPlatform(posX, posY, platform) {
-    if (this.addedPlatforms > 1) {
-      if (Phaser.Math.Between(1, 100) <= gameOptions.coinPercent) {
-        let gem;
-        if (this.gemPool.getLength()) {
-          gem = this.gemPool.getFirst();
-          gem.x = posX;
-          gem.y = posY - 46;
-          gem.alpha = 1;
-          gem.active = true;
-          gem.visible = true;
-          gem.setVelocityX(platform.body.velocity.x);
-          this.gemPool.remove(gem);
-        } else {
-          gem = this.physics.add.sprite(posX, posY - 60, this.nextGem());
-          gem.setImmovable = true;
-          gem.setVelocityX(platform.body.velocity.x);
-          this.gemGroup.add(gem);
-        }
-        gem.setScale(0.75);
-        gem.setDepth(2);
-      }
-    }
   }
 
   addBernacleOnPlatform(posX, posY, platform) {
