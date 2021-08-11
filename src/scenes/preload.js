@@ -20,6 +20,8 @@ import gemRed from "../assets/items/gemRed.png";
 import gemYellow from "../assets/items/gemYellow.png";
 import barnacle from "../assets/enemies/barnacle_attack.png";
 import barnacleOpen from "../assets/enemies/barnacle.png";
+import bee from "../assets/enemies/bee.png";
+import beeFlat from "../assets/enemies/bee_move.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -122,6 +124,14 @@ class PreloadGame extends Phaser.Scene {
     this.load.image("barnacleOpen", barnacleOpen, {
       frameWidth: 40,
       frameHeight: 70,
+    });
+    this.load.image("bee", bee, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+    this.load.image("bee", bee2, {
+      frameWidth: 32,
+      frameHeight: 48,
     });
   }
 
