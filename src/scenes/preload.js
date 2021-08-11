@@ -1,16 +1,16 @@
 import Phaser from "phaser";
-import player from "../assets/player/Blue/alienBlue_walk1.png";
-import bluePlayer from "../assets/player/Blue/alienBlue_walk2.png";
-import bluePlayerRun from "../assets/player/Blue/alienBlue_jump.png";
-import bluePlayerJump from "../assets/player/Green/alienGreen_walk1.png";
-import playerRun from "../assets/player/Green/alienGreen_walk2.png";
-import playerJump from "../assets/player/Green/alienGreen_jump.png";
-import player from "../assets/player/Pink/alienPink_walk1.png";
-import playerRun from "../assets/player/Pink/alienPink_walk2.png";
-import playerJump from "../assets/player/Pink/alienPink_jump.png";
-import player from "../assets/player/Yellow/alienYellow_walk1.png";
-import playerRun from "../assets/player/Yellow/alienYellow_walk2.png";
-import playerJump from "../assets/player/Yellow/alienYellow_jump.png";
+import BluePlayer from "../assets/player/Blue/alienBlue_walk1.png";
+import BluePlayerRun from "../assets/player/Blue/alienBlue_walk2.png";
+import BluePlayerJump from "../assets/player/Blue/alienBlue_jump.png";
+import GreenPlayer from "../assets/player/Green/alienGreen_walk1.png";
+import GreenPlayerRun from "../assets/player/Green/alienGreen_walk2.png";
+import GreenPlayerJump from "../assets/player/Green/alienGreen_jump.png";
+import RedPlayer from "../assets/player/Pink/alienPink_walk1.png";
+import RedPlayerRun from "../assets/player/Pink/alienPink_walk2.png";
+import RedPlayerJump from "../assets/player/Pink/alienPink_jump.png";
+import YellowPlayer from "../assets/player/Yellow/alienYellow_walk1.png";
+import YellowPlayerRun from "../assets/player/Yellow/alienYellow_walk2.png";
+import YellowPlayerJump from "../assets/player/Yellow/alienYellow_jump.png";
 import blueLand from "../assets/background/blue_land.png";
 import mountain from "../assets/background/mountain.png";
 import platform from "../assets/platform/planetMid.png";
@@ -30,17 +30,61 @@ class PreloadGame extends Phaser.Scene {
   preload() {
     this.load.image("blueLand", blueLand);
     this.load.image("platform", platform);
-    this.load.image("player", player, {
+
+    this.load.image("BluePlayer", BluePlayer, {
       frameWidth: 200,
       frameHeight: 200,
     });
 
-    this.load.image("playerRun", playerRun, {
+    this.load.image("BluePlayerRun", BluePlayerRun, {
       frameWidth: 200,
       frameHeight: 200,
     });
 
-    this.load.image("playerJump", playerJump, {
+    this.load.image("BluePlayerJump", BluePlayerJump, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+    this.load.image("GreenPlayer", GreenPlayer, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("GreenPlayerRun", GreenPlayerRun, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("GreenPlayerJump", GreenPlayerJump, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+    this.load.image("RedPlayer", RedPlayer, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("RedPlayerRun", RedPlayerRun, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("RedPlayerJump", RedPlayerJump, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("YellowPlayer", YellowPlayer, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("YellowPlayerRun", YellowPlayerRun, {
+      frameWidth: 200,
+      frameHeight: 200,
+    });
+
+    this.load.image("YellowPlayerJump", YellowPlayerJump, {
       frameWidth: 200,
       frameHeight: 200,
     });
@@ -88,14 +132,52 @@ class PreloadGame extends Phaser.Scene {
     this.background.displayWidth = gameConfig.width;
 
     this.anims.create({
-      key: "run",
-      frames: [{ key: "player" }, { key: "playerRun" }],
+      key: "BlueRun",
+      frames: [{ key: "BluePlayer" }, { key: "BlueplayerRun" }],
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
-      key: "jump",
-      frames: [{ key: "playerJump" }],
+      key: "BlueJump",
+      frames: [{ key: "BluePlayerJump" }],
+      frameRate: 20,
+    });
+    this.anims.create({
+      key: "GreenRun",
+      frames: [{ key: "GreenPlayer" }, { key: "GreenplayerRun" }],
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "GreenJump",
+      frames: [{ key: "GreenPlayerJump" }],
+      frameRate: 20,
+    });
+
+    this.anims.create({
+      key: "RedRun",
+      frames: [{ key: "RedPlayer" }, { key: "RedplayerRun" }],
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "RedJump",
+      frames: [{ key: "RedPlayerJump" }],
+      frameRate: 20,
+    });
+
+    this.anims.create({
+      key: "YellowRun",
+      frames: [{ key: "YellowPlayer" }, { key: "YellowplayerRun" }],
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "YellowJump",
+      frames: [{ key: "YellowPlayerJump" }],
       frameRate: 20,
     });
 
