@@ -12,6 +12,7 @@ class Background extends Phaser.Scene {
       .setScrollFactor(1, 0);
     this.background.displayWidth = gameConfig.width;
   }
+
   getLastMountainX() {
     let lastMountainX = -200;
     this.mountainGroup.getChildren().forEach((mountain) => {
@@ -19,6 +20,7 @@ class Background extends Phaser.Scene {
     });
     return lastMountainX;
   }
+
   addMountains() {
     const lastMountainX = this.getLastMountainX();
     if (lastMountainX < gameConfig.width * 2) {
@@ -37,6 +39,7 @@ class Background extends Phaser.Scene {
       this.addMountains();
     }
   }
+
   recycleMountains() {
     this.mountainGroup.getChildren().forEach((mountain) => {
       if (mountain.x < -mountain.displayWidth) {
@@ -50,11 +53,13 @@ class Background extends Phaser.Scene {
       }
     });
   }
+
   create() {
     this.setBackground();
     this.mountainGroup = this.add.group();
     this.addMountains();
   }
+
   update() {
     this.recycleMountains();
   }

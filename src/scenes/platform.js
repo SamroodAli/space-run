@@ -1,6 +1,6 @@
-import Background from "./background.js";
+import Items from "./items.js";
 import { gameConfig, gameOptions } from "../gameOptions.js";
-class Platform extends Background {
+class Platform extends Items {
   constructor(key) {
     super(key);
   }
@@ -62,7 +62,7 @@ class Platform extends Background {
     if (Phaser.Math.Between(0, 100) < gameOptions.barnaclePercent) {
       const startPlatform = posX - platformWidth / 2;
       const barnacleX =
-        startPlatform + Phaser.Math.Between(10, platformWidth - 10);
+        startPlatform + Phaser.Math.Between(20, platformWidth - 20);
       const barnacleY = posY - 2 * platform.height;
       if (this.barnaclePool.getLength()) {
         let barnacle = this.barnaclePool.getFirst();

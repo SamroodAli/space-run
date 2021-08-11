@@ -45,7 +45,6 @@ class Player extends Platform {
       this.playerJumps += 1;
     }
   }
-
   create() {
     super.create();
     this.createPlayer();
