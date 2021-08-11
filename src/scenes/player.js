@@ -50,6 +50,7 @@ class Player extends Platform {
     this.createPlayer();
     this.letPlayerCollideWithPlatform();
     this.letPlayerJump();
+    this.letPlayerCollectWithitems();
     this.dying = false;
   }
   update() {

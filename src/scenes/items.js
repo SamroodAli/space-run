@@ -70,24 +70,27 @@ class Items extends Background {
     this.physics.add.overlap(
       this.player,
       this.barnacleGroup,
-      (player, barnacle) => {
+      () => {
         this.dying = true;
         this.player.anims.stop();
         this.player.setFrame(3);
         this.player.body.setVelocityY(-200);
-        // this.physics.world.removeCollider(this.platformCollider);
+        this.physics.world.removeCollider(this.platformCollider);
       },
       null,
       this
     );
   }
 
+  letPlayerCollectWithitems() {
+    this.letPlayerCollectWithGems();
+    this.letbarnacleKillPlayer();
+  }
+
   create() {
     super.create();
     this.poolGems();
     this.poolbarnacle();
-    // this.letPlayerCollectWithGems();
-    // this.letbarnacleKillPlayer();
   }
   update() {
     super.update();
