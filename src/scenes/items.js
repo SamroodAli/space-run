@@ -95,8 +95,8 @@ class Items extends Background {
 
   addBees() {
     let posX = gameConfig.width + 50;
-    let posY = gameOptions.playerStartPosition + Phaser.Math.Between(100, -100);
-    let velocity = -100;
+    let posY = gameConfig.height / 2 + Phaser.Math.Between(-100, 100);
+    let velocity = -300;
     if (this.beesPool.getLength()) {
       let bee = this.beesPool.getFirst();
       bee.x = posX;
@@ -112,6 +112,7 @@ class Items extends Background {
       bee.setVelocityX(velocity);
       this.beesGroup.add(bee);
       bee.anims.play("beeAttack");
+      bee.setDepth(2);
     }
   }
 
