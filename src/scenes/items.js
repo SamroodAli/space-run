@@ -1,5 +1,6 @@
 import Background from "./background.js";
 import { gameOptions } from "../gameOptions.js";
+
 class Items extends Background {
   constructor(key) {
     super(key);
@@ -28,7 +29,11 @@ class Items extends Background {
           ease: "Cubic.easeOut",
           callbackScope: this,
           onComplete: function () {
-            console.log(gem.frame.texture.key);
+            const playerColor = gem.frame.texture.key.slice(3);
+            if (playerColor != this.currentPlayer) {
+              this.player.setTexture(playerColor + "Player");
+              this.currentPlayer = playerColor;
+            }
             this.gemGroup.killAndHide(gem);
             this.gemGroup.remove(gem);
           },
@@ -74,7 +79,6 @@ class Items extends Background {
       () => {
         this.dying = true;
         this.player.anims.stop();
-        this.player.setFrame(3);
         this.player.body.setVelocityY(-200);
         this.physics.world.removeCollider(this.platformCollider);
       },
@@ -148,6 +152,7 @@ class Items extends Background {
     this.poolGems();
     this.poolbarnacle();
   }
+
   update() {
     super.update();
     this.recyclegems();
