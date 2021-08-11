@@ -129,7 +129,7 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     });
-    this.load.image("bee", beeFlat, {
+    this.load.image("beeFlat", beeFlat, {
       frameWidth: 32,
       frameHeight: 48,
     });

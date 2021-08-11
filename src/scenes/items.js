@@ -1,5 +1,5 @@
 import Background from "./background.js";
-import { gameOptions } from "../gameOptions.js";
+import { gameConfig, gameOptions } from "../gameOptions.js";
 
 class Items extends Background {
   constructor(key) {
@@ -93,6 +93,28 @@ class Items extends Background {
     });
   }
 
+  addBees() {
+    let posX = gameConfig.width + 50;
+    let posY = gameOptions.playerStartPosition + Phaser.Math.Between(100, -100);
+    let velocity = -100;
+    if (this.beesPool.getLength()) {
+      let bee = this.beesPool.getFirst();
+      bee.x = posX;
+      bee.y = posY;
+      bee.alpha = 1;
+      bee.active = true;
+      bee.visible = true;
+      bees.setVelocityX(velocity);
+      this.beesPool.remove(bee);
+    } else {
+      let bee = this.physics.add.sprite(posX, posY - 60, "bee");
+      bee.setImmovable = true;
+      bee.setVelocityX(velocity);
+      this.beesGroup.add(bee);
+      bee.anims.play("beeAttack");
+    }
+  }
+
   poolbarnacle() {
     this.barnacleGroup = this.add.group({
       removeCallback: (barnacle) => this.barnaclePool.add(barnacle),
@@ -165,6 +187,8 @@ class Items extends Background {
     super.create();
     this.poolGems();
     this.poolbarnacle();
+    this.poolBees();
+    this.addBees();
   }
 
   update() {
