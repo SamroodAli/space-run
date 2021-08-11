@@ -9,7 +9,7 @@ class Player extends Platform {
     this.player = this.physics.add.sprite(
       gameOptions.playerStartPosition,
       gameConfig.height / 2,
-      "player"
+      "BluePlayer"
     );
     this.player.setScale(0.5);
     this.player.setDepth(2);
@@ -21,7 +21,7 @@ class Player extends Platform {
       this.playerJumps = 0;
     }
     if (!this.player.anims.isPlaying) {
-      this.player.anims.play("run");
+      this.player.anims.play("BlueRun");
     }
   }
   letPlayerCollideWithPlatform() {
@@ -57,7 +57,7 @@ class Player extends Platform {
     super.update();
     this.player.x = gameOptions.playerStartPosition;
     if (!this.player.body.touching.down) {
-      this.player.anims.play("jump");
+      this.player.anims.play("BlueJump");
     }
   }
 }

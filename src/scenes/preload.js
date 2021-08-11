@@ -133,7 +133,7 @@ class PreloadGame extends Phaser.Scene {
 
     this.anims.create({
       key: "BlueRun",
-      frames: [{ key: "BluePlayer" }, { key: "BlueplayerRun" }],
+      frames: [{ key: "BluePlayer" }, { key: "BluePlayerRun" }],
       frameRate: 10,
       repeat: -1,
     });
@@ -144,7 +144,7 @@ class PreloadGame extends Phaser.Scene {
     });
     this.anims.create({
       key: "GreenRun",
-      frames: [{ key: "GreenPlayer" }, { key: "GreenplayerRun" }],
+      frames: [{ key: "GreenPlayer" }, { key: "GreenPlayerRun" }],
       frameRate: 10,
       repeat: -1,
     });
@@ -157,7 +157,7 @@ class PreloadGame extends Phaser.Scene {
 
     this.anims.create({
       key: "RedRun",
-      frames: [{ key: "RedPlayer" }, { key: "RedplayerRun" }],
+      frames: [{ key: "RedPlayer" }, { key: "RedPlayerRun" }],
       frameRate: 10,
       repeat: -1,
     });
@@ -170,7 +170,7 @@ class PreloadGame extends Phaser.Scene {
 
     this.anims.create({
       key: "YellowRun",
-      frames: [{ key: "YellowPlayer" }, { key: "YellowplayerRun" }],
+      frames: [{ key: "YellowPlayer" }, { key: "YellowPlayerRun" }],
       frameRate: 10,
       repeat: -1,
     });
