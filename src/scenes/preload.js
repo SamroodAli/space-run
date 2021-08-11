@@ -129,7 +129,7 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     });
-    this.load.image("bee", bee2, {
+    this.load.image("bee", beeFlat, {
       frameWidth: 32,
       frameHeight: 48,
     });
@@ -206,6 +206,14 @@ class PreloadGame extends Phaser.Scene {
     this.anims.create({
       key: "barnacleAttack",
       frames: [{ key: "barnacle" }, { key: "barnacleOpen" }],
+      frameRate: 10,
+      yoyo: true,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "beeAttack",
+      frames: [{ key: "bee" }, { key: "beeFlat" }],
       frameRate: 10,
       yoyo: true,
       repeat: -1,
