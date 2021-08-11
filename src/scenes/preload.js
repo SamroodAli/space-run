@@ -189,8 +189,7 @@ class PreloadGame extends Phaser.Scene {
         { key: "gemRed" },
         { key: "gemYellow" },
       ],
-      frameRate: 2,
-      yoyo: true,
+      frameRate: 1,
       repeat: -1,
     });
 
