@@ -13,8 +13,8 @@ export const gameOptions = {
   jumpForce: 400,
   playerStartPosition: 200,
   jumps: 2,
-  coinPercent: 25,
-  barnaclePercent: 25,
+  coinPercent: 40,
+  barnaclePercent: 10,
 };
 
 export const gameConfig = {

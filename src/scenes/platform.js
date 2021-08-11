@@ -35,31 +35,9 @@ class Platform extends Items {
       this.platformGroup.add(platform);
       platform.setDepth(2);
     }
-    if (this.addedPlatforms > 1) {
-      if (Phaser.Math.Between(1, 100) <= gameOptions.coinPercent) {
-        let gem;
-        if (this.gemPool.getLength()) {
-          gem = this.gemPool.getFirst();
-          gem.x = posX;
-          gem.y = posY - 46;
-          gem.alpha = 1;
-          gem.active = true;
-          gem.visible = true;
-          gem.setVelocityX(platform.body.velocity.x);
-          this.gemPool.remove(gem);
-        } else {
-          gem = this.physics.add.sprite(posX, posY - 60, "gemBlue");
-          gem.setImmovable = true;
-          gem.setVelocityX(platform.body.velocity.x);
-          this.gemGroup.add(gem);
-        }
-        gem.setScale(0.75);
-        gem.setDepth(2);
-        gem.anims.play("changeColor");
-      }
-    }
-    super.addBernacleOnPlatform(posX, posY, platform);
 
+    super.addGemOnPlatform(posX, posY, platform);
+    super.addBernacleOnPlatform(posX, posY, platform);
     this.nextPlatformDistance = Phaser.Math.Between(...gameOptions.spawnRange);
   }
 
