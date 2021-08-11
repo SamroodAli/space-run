@@ -115,6 +115,20 @@ class Items extends Background {
       bee.setDepth(2);
     }
   }
+  letBeesKillPlayer() {
+    this.physics.add.overlap(
+      this.player,
+      this.beesGroup,
+      () => {
+        this.dying = true;
+        this.player.anims.stop();
+        this.player.body.setVelocityY(-200);
+        this.physics.world.removeCollider(this.platformCollider);
+      },
+      null,
+      this
+    );
+  }
 
   poolbarnacle() {
     this.barnacleGroup = this.add.group({
@@ -182,6 +196,7 @@ class Items extends Background {
   letPlayerCollectWithitems() {
     this.letPlayerCollectWithGems();
     this.letbarnacleKillPlayer();
+    this.letBeesKillPlayer();
   }
 
   create() {
