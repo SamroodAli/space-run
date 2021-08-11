@@ -5,6 +5,11 @@ class Items extends Background {
   constructor(key) {
     super(key);
   }
+  colors = ["Blue", "Red", "Green", "Yellow"];
+
+  nextGem() {
+    return `gem${this.colors[Phaser.Math.Between(0, 3)]}`;
+  }
 
   poolGems() {
     this.gemGroup = this.add.group({
@@ -101,14 +106,13 @@ class Items extends Background {
           gem.setVelocityX(platform.body.velocity.x);
           this.gemPool.remove(gem);
         } else {
-          gem = this.physics.add.sprite(posX, posY - 60, "gemBlue");
+          gem = this.physics.add.sprite(posX, posY - 60, this.nextGem());
           gem.setImmovable = true;
           gem.setVelocityX(platform.body.velocity.x);
           this.gemGroup.add(gem);
         }
         gem.setScale(0.75);
         gem.setDepth(2);
-        gem.anims.play("changeColor");
       }
     }
   }
