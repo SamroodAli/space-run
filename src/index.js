@@ -3,5 +3,3 @@ import Phaser from "phaser";
 import { gameConfig } from "./gameOptions.js";
 
 new Phaser.Game(gameConfig);
-
-console.log("hello leon");

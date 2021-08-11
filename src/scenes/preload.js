@@ -1,8 +1,16 @@
 import Phaser from "phaser";
 import player from "../assets/player/Blue/alienBlue_walk1.png";
-import playerRun from "../assets/player/Blue/alienBlue_walk2.png";
-import playerJump from "../assets/player/Blue/alienBlue_jump.png";
-import playerHit from "../assets/player/Blue/alienBlue_hit.png";
+import bluePlayer from "../assets/player/Blue/alienBlue_walk2.png";
+import bluePlayerRun from "../assets/player/Blue/alienBlue_jump.png";
+import bluePlayerJump from "../assets/player/Green/alienGreen_walk1.png";
+import playerRun from "../assets/player/Green/alienGreen_walk2.png";
+import playerJump from "../assets/player/Green/alienGreen_jump.png";
+import player from "../assets/player/Pink/alienPink_walk1.png";
+import playerRun from "../assets/player/Pink/alienPink_walk2.png";
+import playerJump from "../assets/player/Pink/alienPink_jump.png";
+import player from "../assets/player/Yellow/alienYellow_walk1.png";
+import playerRun from "../assets/player/Yellow/alienYellow_walk2.png";
+import playerJump from "../assets/player/Yellow/alienYellow_jump.png";
 import blueLand from "../assets/background/blue_land.png";
 import mountain from "../assets/background/mountain.png";
 import platform from "../assets/platform/planetMid.png";
@@ -10,9 +18,6 @@ import gemBlue from "../assets/items/gemBlue.png";
 import gemGreen from "../assets/items/gemGreen.png";
 import gemRed from "../assets/items/gemRed.png";
 import gemYellow from "../assets/items/gemYellow.png";
-import slimeBlue from "../assets/enemies/slimeBlue.png";
-import slimeBlueMove from "../assets/enemies/slimeBlue_move.png";
-import slimeBlueHit from "../assets/enemies/slimeBlue_hit.png";
 import barnacle from "../assets/enemies/barnacle_attack.png";
 import barnacleOpen from "../assets/enemies/barnacle.png";
 
@@ -36,10 +41,6 @@ class PreloadGame extends Phaser.Scene {
     });
 
     this.load.image("playerJump", playerJump, {
-      frameWidth: 200,
-      frameHeight: 200,
-    });
-    this.load.image("playerHit", playerHit, {
       frameWidth: 200,
       frameHeight: 200,
     });
@@ -70,23 +71,9 @@ class PreloadGame extends Phaser.Scene {
       frameHeight: 48,
     });
 
-    this.load.image("slimeBlue", slimeBlue, {
-      frameWidth: 32,
-      frameHeight: 48,
-    });
-
-    this.load.image("slimeBlueHit", slimeBlueHit, {
-      frameWidth: 32,
-      frameHeight: 48,
-    });
-
-    this.load.image("slimeBlueMove", slimeBlueMove, {
-      frameWidth: 32,
-      frameHeight: 48,
-    });
     this.load.image("barnacle", barnacle, {
       frameWidth: 32,
-      frameHeight: 48,
+      frameHeight: 70,
     });
     this.load.image("barnacleOpen", barnacleOpen, {
       frameWidth: 40,
@@ -112,11 +99,6 @@ class PreloadGame extends Phaser.Scene {
       frameRate: 20,
     });
 
-    this.anims.create({
-      key: "hit",
-      frames: [{ key: "playerHit" }],
-      frameRate: 20,
-    });
     this.anims.create({
       key: "changeColor",
       frames: [
