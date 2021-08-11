@@ -1,5 +1,5 @@
 import Background from "./background.js";
-
+import { gameOptions } from "../gameOptions.js";
 class Items extends Background {
   constructor(key) {
     super(key);
@@ -80,6 +80,37 @@ class Items extends Background {
       null,
       this
     );
+  }
+
+  addGemOnPlatform(posX, posY, platform) {}
+
+  addBernacleOnPlatform(posX, posY, platform) {
+    if (Phaser.Math.Between(0, 100) < gameOptions.barnaclePercent) {
+      const startPlatform = posX - platform.displayWidth / 2;
+      const barnacleX =
+        startPlatform + Phaser.Math.Between(20, platform.displayWidth - 20);
+      const barnacleY = posY - 2 * platform.height;
+      if (this.barnaclePool.getLength()) {
+        let barnacle = this.barnaclePool.getFirst();
+        barnacle.x = barnacleX;
+        barnacle.y = barnacleY;
+        barnacle.alpha = 1;
+        barnacle.active = true;
+        barnacle.visible = true;
+        barnacle.setVelocityX(platform.body.velocity.x);
+        this.barnaclePool.remove(barnacle);
+      } else {
+        let barnacle = this.physics.add
+          .sprite(barnacleX, barnacleY, "barnacle")
+          .setScale(0.75);
+        barnacle.setImmovable(true);
+        barnacle.setVelocityX(platform.body.velocity.x);
+        barnacle.setSize(8, 2, true);
+        barnacle.anims.play("barnacleAttack");
+        barnacle.setDepth(2);
+        this.barnacleGroup.add(barnacle);
+      }
+    }
   }
 
   letPlayerCollectWithitems() {
