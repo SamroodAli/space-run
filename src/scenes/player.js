@@ -1,6 +1,7 @@
 import Platform from "./platform.js";
 import { gameConfig, gameOptions } from "../gameOptions.js";
 class Player extends Platform {
+  currentPlayer = "Blue";
   constructor(key) {
     super(key);
   }
@@ -9,7 +10,7 @@ class Player extends Platform {
     this.player = this.physics.add.sprite(
       gameOptions.playerStartPosition,
       gameConfig.height / 2,
-      "BluePlayer"
+      `${this.currentPlayer}Player`
     );
     this.player.setScale(0.5);
     this.player.setDepth(2);
@@ -21,7 +22,7 @@ class Player extends Platform {
       this.playerJumps = 0;
     }
     if (!this.player.anims.isPlaying) {
-      this.player.anims.play("BlueRun");
+      this.player.anims.play(`${this.currentPlayer}Run`);
     }
   }
   letPlayerCollideWithPlatform() {
@@ -57,7 +58,7 @@ class Player extends Platform {
     super.update();
     this.player.x = gameOptions.playerStartPosition;
     if (!this.player.body.touching.down) {
-      this.player.anims.play("BlueJump");
+      this.player.anims.play(`${this.currentPlayer}Jump`);
     }
   }
 }
