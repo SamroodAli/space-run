@@ -94,7 +94,7 @@ class Player extends Platform {
     this.letPlayerCollideWithPlatform();
     this.letPlayerJump();
     this.letPlayerShoot();
-    this.letPlayerCollectWithitems();
+    this.letPlayerCollideWithitems();
     this.createGun();
     this.dying = false;
   }

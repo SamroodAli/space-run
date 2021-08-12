@@ -6,7 +6,7 @@ class Items extends Background {
     super(key);
   }
   colors = ["Blue", "Red", "Green", "Yellow"];
-  beeAndfly = ["Bee", "Fly"];
+  beeAndfly = ["bee", "fly"];
 
   nextGem() {
     return `gem${this.colors[Phaser.Math.Between(0, 3)]}`;
@@ -151,6 +151,15 @@ class Items extends Background {
     );
   }
 
+  letPlayerKillBee(bee) {
+    bee.anims.stop();
+    const currentBee = bee.frame.texture.key.slice(3);
+    console.log(currentBee);
+    bee.anims.play(currentBee + "Dead");
+    this.beesGroup.killAndHide(bee);
+    this.beesGroup.remove(bee);
+  }
+
   poolbarnacle() {
     this.barnacleGroup = this.add.group({
       removeCallback: (barnacle) => this.barnaclePool.add(barnacle),
@@ -214,7 +223,7 @@ class Items extends Background {
     }
   }
 
-  letPlayerCollectWithitems() {
+  letPlayerCollideWithitems() {
     this.letPlayerCollectWithGems();
     this.letbarnacleKillPlayer();
     this.letBeesKillPlayer();
