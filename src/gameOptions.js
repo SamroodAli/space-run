@@ -1,5 +1,6 @@
 import Game from "./scenes/game.js";
 import PreloadGame from "./scenes/preload.js";
+import Phaser from "phaser";
 
 export const gameOptions = {
   platformSpeedRange: [300, 400],
@@ -15,6 +16,7 @@ export const gameOptions = {
   jumps: 30,
   coinPercent: 40,
   barnaclePercent: 10,
+  enemyPercent: () => Phaser.Math.Between(0, 500) < 1,
 };
 
 export const gameConfig = {

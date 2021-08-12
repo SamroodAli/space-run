@@ -94,7 +94,7 @@ class Items extends Background {
   }
 
   addBees() {
-    if (Phaser.Math.Between(0, 500) < 1) {
+    if (gameOptions.enemyPercent()) {
       let posX = gameConfig.width + 50;
       let posY = gameConfig.height / 2 + Phaser.Math.Between(-100, 100);
       let velocity = -300;
