@@ -277,12 +277,12 @@ class PreloadGame extends Phaser.Scene {
       frameRate: 10,
     });
 
-    // this.anims.create({
-    //   key: "gunFire",
-    //   frames: [{ key: "gun" }],
-    //   frameRate: 10,
-    //   yoyo: true,
-    // });
+    this.anims.create({
+      key: "emptyGun",
+      frames: [{ key: "emptyGun" }],
+      frameRate: 10,
+      yoyo: true,
+    });
 
     this.scene.start("Game");
   }
