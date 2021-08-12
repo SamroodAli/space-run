@@ -26,7 +26,7 @@ class Background extends Phaser.Scene {
     if (lastMountainX < gameConfig.width * 2) {
       let mountain = this.physics.add.sprite(
         lastMountainX + Phaser.Math.Between(100, 350),
-        gameConfig.height - Phaser.Math.Between(20, 120),
+        gameConfig.height + Phaser.Math.Between(20, 120),
         "mountain"
       );
       mountain.setOrigin(0.5, 1);

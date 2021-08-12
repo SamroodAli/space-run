@@ -30,7 +30,8 @@ import BlueLaser from "../assets/laser/BlueLaser.png";
 import GreenLaser from "../assets/laser/GreenLaser.png";
 import RedLaser from "../assets/laser/RedLaser.png";
 import YellowLaser from "../assets/laser/YellowLaser.png";
-import gun from "../assets/laser/raygunBig.png";
+import loadedGun from "../assets/laser/raygunBig.png";
+import gun from "../assets/laser/raygunPurple.png";
 
 import { gameConfig } from "../gameOptions.js";
 
