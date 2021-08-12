@@ -81,13 +81,28 @@ class Player extends Platform {
     }
   }
 
+  reloadGun() {
+    this.remainingShots = 6;
+    this.gun.anims.play("gunFire");
+  }
+
+  emptyGun() {
+    this.gun.anims.play("emptyGun");
+    this.time.delayedCall(
+      3000,
+      () => {
+        this.remainingShots = 6;
+        this.gun.anims.play("gunFire");
+      },
+      null,
+      this
+    );
+  }
+
   loadLaser() {
     let laser;
     if (this.laserPool.getLength()) {
       laser = this.laserPool.getFirst();
-      laser.alpha = 1;
-      laser.active = true;
-      laser.visible = true;
       this.laserPool.remove(laser);
     } else {
       laser = this.physics.add.sprite(
@@ -98,28 +113,25 @@ class Player extends Platform {
       laser.setImmovable(true);
       this.laserGroup.add(laser);
     }
+    laser.x = gameOptions.playerStartPosition + 50;
+    laser.y = this.player.y + 25;
+    laser.active = true;
+    laser.visible = true;
     laser.setScale(0.5);
     laser.setDepth(2);
     laser.setImmovable(true);
     return laser;
   }
 
-  reloadGun() {
-    console.log("i am called");
-    this.remainingShots = 6;
-    this.gun.anims.play("gunFire");
-  }
-
   shoot() {
-    console.log(this.remainingShots);
     if (this.remainingShots > 0) {
       this.gun.anims.play("gunFire");
       const laser = this.loadLaser();
+      console.log(laser);
       laser.setVelocityX(400);
       this.remainingShots -= 1;
       if (this.remainingShots === 0) {
-        this.gun.anims.play("emptyGun");
-        this.time.delayedCall(3000, this.reloadGun, null, this);
+        this.emptyGun();
       }
     }
   }

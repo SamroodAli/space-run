@@ -9,6 +9,8 @@ class Game extends Player {
   }
 
   restartGame() {
+    this.playerJumps = 0;
+    this.remainingShots = 6;
     this.scene.stop();
     this.scene.start("PreloadGame");
   }
