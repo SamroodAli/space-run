@@ -62,6 +62,21 @@ class Player extends Platform {
     laser.setVelocityX(400);
     laser.setDepth(2);
   }
+
+  createGun() {
+    this.gun = this.physics.add.sprite(
+      gameOptions.playerStartPosition + 40,
+      this.player.y + 25,
+      "gun"
+    );
+    this.gun.setDepth(2);
+  }
+
+  fixGunWithPlayer() {
+    this.gun.x = this.player.x + 40;
+    this.gun.y = this.player.y + 30;
+  }
+
   create() {
     super.create();
     this.createPlayer();
@@ -69,10 +84,12 @@ class Player extends Platform {
     this.letPlayerJump();
     this.letPlayerShoot();
     this.letPlayerCollectWithitems();
+    this.createGun();
     this.dying = false;
   }
   update() {
     super.update();
+    this.fixGunWithPlayer();
     this.player.x = gameOptions.playerStartPosition;
     if (!this.player.body.touching.down) {
       this.player.anims.play(`${this.currentPlayer}Jump`);
