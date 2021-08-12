@@ -65,10 +65,8 @@ class Player extends Platform {
     barnacle.anims.play("barnacleDead");
     this.laserGroup.killAndHide(laser);
     this.laserGroup.remove(laser);
-    barnacle.setVelocityY(-300);
-    this.barnacleGroup.killAndHide(barnacle);
-    // barnacle.setGravityY(gameOptions.playerGravity);
-    this.barnacleGroup.remove(barnacle);
+    barnacle.setVelocityY(200);
+    barnacle.dead = true;
   }
 
   letPlayerKillBees() {
@@ -83,7 +81,7 @@ class Player extends Platform {
   letPlayerKillBarnacle() {
     this.physics.add.collider(
       this.laserGroup,
-      this.beesGroup,
+      this.barnacleGroup,
       this.onLaserCollisionWithBarnacle,
       null,
       this
@@ -189,7 +187,6 @@ class Player extends Platform {
   }
 
   create() {
-    console.log("player create called");
     super.create();
     this.createPlayer();
     this.letPlayerCollideWithPlatform();
