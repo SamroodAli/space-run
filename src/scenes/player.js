@@ -7,6 +7,16 @@ class Player extends Platform {
     super(key);
   }
 
+  poolLasers() {
+    this.laserGroup = this.add.group({
+      removeCallback: (laser) => this.laserPool.add(laser),
+    });
+
+    this.laserPool = this.add.group({
+      removeCallback: (laser) => this.laserGroup.add(laser),
+    });
+  }
+
   createPlayer() {
     this.player = this.physics.add.sprite(
       gameOptions.playerStartPosition,
@@ -61,18 +71,35 @@ class Player extends Platform {
     }
   }
 
-  shoot() {
-    if (this.remainingShots > 0) {
-      const laser = this.physics.add.sprite(
+  loadLaser() {
+    let laser;
+    if (this.laserPool.getLength()) {
+      laser = this.laserPool.getFirst();
+      laser.alpha = 1;
+      laser.active = true;
+      laser.visible = true;
+      this.laserPool.remove(laser);
+    } else {
+      laser = this.physics.add.sprite(
         gameOptions.playerStartPosition + 50,
         this.player.y + 25,
         `${this.currentPlayer}Laser`
       );
+      laser.setImmovable = true;
+      laser.setVelocityX(platform.body.velocity.x);
+      this.laserGroup.add(laser);
+    }
+    laser.setScale(0.5);
+    laser.setDepth(2);
+    laser.setImmovable(true);
+    return laser;
+  }
+
+  shoot() {
+    if (this.remainingShots > 0) {
       this.gun.anims.play("gunFire");
-      laser.setScale(0.5);
-      laser.setImmovable(true);
+      const laser = this.loadLaser();
       laser.setVelocityX(400);
-      laser.setDepth(2);
       this.remainingShots -= 1;
       if (this.remainingShots === 0) {
         this.gun.anims.play("emptyGun");
@@ -103,6 +130,7 @@ class Player extends Platform {
     this.createPlayer();
     this.letPlayerCollideWithPlatform();
     this.letPlayerJump();
+    this.poolLasers();
     this.letPlayerShoot();
     this.letPlayerCollideWithitems();
     this.letPlayerKillBees();
