@@ -327,6 +327,13 @@ class PreloadGame extends Phaser.Scene {
       yoyo: true,
     });
 
+    this.anims.create({
+      key: "barnacleDead",
+      frames: [{ key: "barnacleDead" }],
+      frameRate: 10,
+      yoyo: true,
+    });
+
     this.scene.start("Game");
   }
 }
