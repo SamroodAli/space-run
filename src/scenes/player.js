@@ -28,6 +28,10 @@ class Player extends Platform {
     this.player.setGravityY(gameOptions.playerGravity);
   }
 
+  fixPlayerPosition() {
+    this.player.x = gameOptions.playerStartPosition;
+  }
+
   runOnPlatform() {
     if (this.player.body.touching.down) {
       this.playerJumps = 0;
@@ -71,6 +75,12 @@ class Player extends Platform {
     }
   }
 
+  playJumpAnimationIfNotOnLand() {
+    if (!this.player.body.touching.down) {
+      this.player.anims.play(`${this.currentPlayer}Jump`);
+    }
+  }
+
   loadLaser() {
     let laser;
     if (this.laserPool.getLength()) {
@@ -85,8 +95,7 @@ class Player extends Platform {
         this.player.y + 25,
         `${this.currentPlayer}Laser`
       );
-      laser.setImmovable = true;
-      laser.setVelocityX(platform.body.velocity.x);
+      laser.setImmovable(true);
       this.laserGroup.add(laser);
     }
     laser.setScale(0.5);
@@ -95,7 +104,14 @@ class Player extends Platform {
     return laser;
   }
 
+  reloadGun() {
+    console.log("i am called");
+    this.remainingShots = 6;
+    this.gun.anims.play("gunFire");
+  }
+
   shoot() {
+    console.log(this.remainingShots);
     if (this.remainingShots > 0) {
       this.gun.anims.play("gunFire");
       const laser = this.loadLaser();
@@ -103,12 +119,18 @@ class Player extends Platform {
       this.remainingShots -= 1;
       if (this.remainingShots === 0) {
         this.gun.anims.play("emptyGun");
-        this.time.delayedCall(3000, () => {
-          this.remainingShots = 6;
-          this.gun.anims.play("gunFire");
-        });
+        this.time.delayedCall(3000, this.reloadGun, null, this);
       }
     }
+  }
+
+  recycleLaser() {
+    this.laserGroup.getChildren().forEach((laser) => {
+      if (laser.x > gameConfig.width + 50) {
+        this.laserGroup.killAndHide(laser);
+        this.laserGroup.remove(laser);
+      }
+    });
   }
 
   createGun() {
@@ -135,15 +157,13 @@ class Player extends Platform {
     this.letPlayerCollideWithitems();
     this.letPlayerKillBees();
     this.createGun();
-    this.dying = false;
   }
   update() {
     super.update();
     this.fixGunWithPlayer();
-    this.player.x = gameOptions.playerStartPosition;
-    if (!this.player.body.touching.down) {
-      this.player.anims.play(`${this.currentPlayer}Jump`);
-    }
+    this.recycleLaser();
+    this.fixPlayerPosition();
+    this.playJumpAnimationIfNotOnLand();
   }
 }
 

@@ -2,6 +2,8 @@ import Player from "./player.js";
 import { gameConfig } from "../gameOptions.js";
 
 class Game extends Player {
+  dying = false;
+
   constructor() {
     super("Game");
   }

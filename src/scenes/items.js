@@ -84,12 +84,9 @@ class Items extends Background {
     }
   }
 
-  flyType = () => `${this.beeAndfly[Phaser.Math.Between(0, 1)]}Attack`;
-
   poolBees() {
     this.beesGroup = this.add.group({
       removeCallback: (bee) => {
-        bee.anims.play(this.flyType());
         this.beesPool.add(bee);
       },
     });
@@ -99,6 +96,8 @@ class Items extends Background {
     });
   }
 
+  flyType = () => `${this.beeAndfly[Phaser.Math.Between(0, 1)]}Attack`;
+
   addBees() {
     if (gameOptions.enemyPercent()) {
       let posX = gameConfig.width + 50;
@@ -106,6 +105,7 @@ class Items extends Background {
       let velocity = -300;
       if (this.beesPool.getLength()) {
         let bee = this.beesPool.getFirst();
+        bee.anims.play(this.flyType());
         bee.x = posX;
         bee.y = posY;
         bee.alpha = 1;
