@@ -26,6 +26,10 @@ import beeDead from "../assets/enemies/bee_dead.png";
 import fly from "../assets/enemies/fly.png";
 import flyFlat from "../assets/enemies/fly_move.png";
 import flyDead from "../assets/enemies/fly_dead.png";
+import BlueLaser from "../assets/laser/laserBlueHorizontal.png";
+import GreenLaser from "../assets/laser/laserGreenHorizontal.png";
+import RedLaser from "../assets/laser/laserRedHorizontal.png";
+import YellowLaser from "../assets/laser/laserYellowHorizontal.png";
 
 import { gameConfig } from "../gameOptions.js";
 
