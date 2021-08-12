@@ -26,10 +26,11 @@ import beeDead from "../assets/enemies/bee_dead.png";
 import fly from "../assets/enemies/fly.png";
 import flyFlat from "../assets/enemies/fly_move.png";
 import flyDead from "../assets/enemies/fly_dead.png";
-import BlueLaser from "../assets/laser/laserBlueHorizontal.png";
-import GreenLaser from "../assets/laser/laserGreenHorizontal.png";
-import RedLaser from "../assets/laser/laserRedHorizontal.png";
-import YellowLaser from "../assets/laser/laserYellowHorizontal.png";
+import BlueLaser from "../assets/laser/BlueLaser.png";
+import GreenLaser from "../assets/laser/GreenLaser.png";
+import RedLaser from "../assets/laser/RedLaser.png";
+import YellowLaser from "../assets/laser/YellowLaser.png";
+import gun from "../assets/laser/raygunBig.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -151,19 +152,23 @@ class PreloadGame extends Phaser.Scene {
     });
 
     this.load.image("BlueLaser", BlueLaser, {
-      frameWidth: 10,
+      frameWidth: 5,
       frameHeight: 3,
     });
     this.load.image("GreenLaser", GreenLaser, {
-      frameWidth: 10,
+      frameWidth: 5,
       frameHeight: 3,
     });
     this.load.image("RedLaser", RedLaser, {
-      frameWidth: 10,
+      frameWidth: 5,
       frameHeight: 3,
     });
     this.load.image("YellowLaser", YellowLaser, {
-      frameWidth: 10,
+      frameWidth: 5,
+      frameHeight: 3,
+    });
+    this.load.image("gun", gun, {
+      frameWidth: 5,
       frameHeight: 3,
     });
   }

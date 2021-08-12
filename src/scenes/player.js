@@ -49,11 +49,25 @@ class Player extends Platform {
       this.playerJumps += 1;
     }
   }
+
+  shoot() {
+    console.log("shoot");
+    const laser = this.physics.add.sprite(
+      gameOptions.playerStartPosition + 50,
+      this.player.y + 25,
+      `${this.currentPlayer}Laser`
+    );
+    laser.setScale(0.5);
+    laser.setImmovable(true);
+    laser.setVelocityX(400);
+    laser.setDepth(2);
+  }
   create() {
     super.create();
     this.createPlayer();
     this.letPlayerCollideWithPlatform();
     this.letPlayerJump();
+    this.letPlayerShoot();
     this.letPlayerCollectWithitems();
     this.dying = false;
   }
