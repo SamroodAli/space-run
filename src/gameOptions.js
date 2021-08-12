@@ -13,7 +13,7 @@ export const gameOptions = {
   playerGravity: 900,
   jumpForce: 400,
   playerStartPosition: 200,
-  jumps: 30,
+  jumps: 2,
   coinPercent: 40,
   barnaclePercent: 10,
   enemyPercent: () => Phaser.Math.Between(0, 500) < 1,
