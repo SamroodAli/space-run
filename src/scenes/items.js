@@ -94,28 +94,30 @@ class Items extends Background {
   }
 
   addBees() {
-    let posX = gameConfig.width + 50;
-    let posY = gameConfig.height / 2 + Phaser.Math.Between(-100, 100);
-    let velocity = -300;
-    if (this.beesPool.getLength()) {
-      let bee = this.beesPool.getFirst();
-      bee.x = posX;
-      bee.y = posY;
-      bee.alpha = 1;
-      bee.active = true;
-      bee.visible = true;
-      bees.setVelocityX(velocity);
-      this.beesPool.remove(bee);
-    } else {
-      let bee = this.physics.add.sprite(posX, posY - 60, "bee");
-      bee.setImmovable = true;
-      bee.setVelocityX(velocity);
-      bee.body.setSize(20, 40, 8, 8);
-      bee.setScale(0.75);
+    if (Phaser.Math.Between(0, 500) < 1) {
+      let posX = gameConfig.width + 50;
+      let posY = gameConfig.height / 2 + Phaser.Math.Between(-100, 100);
+      let velocity = -300;
+      if (this.beesPool.getLength()) {
+        let bee = this.beesPool.getFirst();
+        bee.x = posX;
+        bee.y = posY;
+        bee.alpha = 1;
+        bee.active = true;
+        bee.visible = true;
+        bees.setVelocityX(velocity);
+        this.beesPool.remove(bee);
+      } else {
+        let bee = this.physics.add.sprite(posX, posY - 60, "bee");
+        bee.setImmovable = true;
+        bee.setVelocityX(velocity);
+        bee.body.setSize(20, 30, 8, 8);
+        bee.setScale(0.75);
 
-      this.beesGroup.add(bee);
-      bee.anims.play("beeAttack");
-      bee.setDepth(2);
+        this.beesGroup.add(bee);
+        bee.anims.play("beeAttack");
+        bee.setDepth(2);
+      }
     }
   }
   letBeesKillPlayer() {
@@ -207,13 +209,13 @@ class Items extends Background {
     this.poolGems();
     this.poolbarnacle();
     this.poolBees();
-    this.addBees();
   }
 
   update() {
     super.update();
     this.recyclegems();
     this.recyclebarnacle();
+    this.addBees();
   }
 }
 
