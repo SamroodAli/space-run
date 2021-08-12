@@ -152,9 +152,9 @@ class Items extends Background {
   }
 
   letPlayerKillBee(bee) {
+    console.log("am i called");
     bee.anims.stop();
     const currentBee = bee.frame.texture.key.slice(3);
-    console.log(currentBee);
     bee.anims.play(currentBee + "Dead");
     this.beesGroup.killAndHide(bee);
     this.beesGroup.remove(bee);

@@ -2,14 +2,12 @@ import Player from "./player.js";
 import { gameConfig } from "../gameOptions.js";
 
 class Game extends Player {
-  dying = false;
-
   constructor() {
     super("Game");
   }
 
   restartGame() {
-    this.playerJumps = 0;
+    this.dying = false;
     this.remainingShots = 6;
     this.scene.stop();
     this.scene.start("PreloadGame");

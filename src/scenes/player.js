@@ -51,7 +51,7 @@ class Player extends Platform {
   }
 
   letPlayerKillBees() {
-    this.physics.add.overlap(
+    this.physics.add.collider(
       this.laserGroup,
       this.beesGroup,
       this.letPlayerKillBee,
@@ -127,7 +127,6 @@ class Player extends Platform {
     if (this.remainingShots > 0) {
       this.gun.anims.play("gunFire");
       const laser = this.loadLaser();
-      console.log(laser);
       laser.setVelocityX(400);
       this.remainingShots -= 1;
       if (this.remainingShots === 0) {
@@ -160,6 +159,7 @@ class Player extends Platform {
   }
 
   create() {
+    console.log("player create called");
     super.create();
     this.createPlayer();
     this.letPlayerCollideWithPlatform();
