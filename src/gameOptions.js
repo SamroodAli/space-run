@@ -3,9 +3,11 @@ import PreloadGame from "./scenes/preload.js";
 import Phaser from "phaser";
 
 export const gameOptions = {
-  platformSpeedRange: [300, 400],
+  platformSpeedRange: [400, 500],
   mountainSpeed: 80,
-  spawnRange: [80, 300],
+  laserSpeed: 800,
+  reloadTime: 1500,
+  spawnRange: [80, 250],
   platformSizeRange: [90, 300],
   platformHeightRange: [-5, 5],
   platformHeightScale: 10,

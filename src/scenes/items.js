@@ -209,9 +209,9 @@ class Items extends Background {
         this.barnacleGroup.add(barnacle);
         barnacle.setDepth(2);
         barnacle.setImmovable(true);
+        barnacle.anims.play("barnacleAttack");
       }
       barnacle.dead = false;
-      barnacle.anims.play("barnacleAttack");
       barnacle.setVelocityX(platform.body.velocity.x);
       barnacle.setVelocityY(0);
       barnacle.alpha = 1;

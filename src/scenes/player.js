@@ -117,7 +117,7 @@ class Player extends Platform {
   emptyGun() {
     this.gun.anims.play("emptyGun");
     this.time.delayedCall(
-      3000,
+      gameOptions.reloadTime,
       () => {
         this.remainingShots = 6;
         this.gun.anims.play("gunFire");
@@ -155,7 +155,7 @@ class Player extends Platform {
     if (this.remainingShots > 0) {
       this.gun.anims.play("gunFire");
       const laser = this.loadLaser();
-      laser.setVelocityX(400);
+      laser.setVelocityX(gameOptions.laserSpeed);
       this.remainingShots -= 1;
       if (this.remainingShots === 0) {
         this.emptyGun();
