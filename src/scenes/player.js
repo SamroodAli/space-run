@@ -1,5 +1,5 @@
 import Platform from "./platform.js";
-import { gameConfig, gameOptions } from "../gameOptions.js";
+import { gameConfig, gameOptions, gamePoints } from "../gameOptions.js";
 class Player extends Platform {
   currentPlayer = "Blue";
   remainingShots = 6;
@@ -51,6 +51,7 @@ class Player extends Platform {
   }
 
   onLaserCollisionWithBee(laser, bee) {
+    this.score += gamePoints.bee;
     bee.anims.stop();
     const currentBee = bee.frame.texture.key.slice(0, 3);
     bee.anims.play(currentBee + "Dead");
@@ -61,6 +62,7 @@ class Player extends Platform {
   }
 
   onLaserCollisionWithBarnacle(laser, barnacle) {
+    this.score += gamePoints.barnacle;
     barnacle.anims.stop();
     barnacle.anims.play("barnacleDead");
     this.laserGroup.killAndHide(laser);

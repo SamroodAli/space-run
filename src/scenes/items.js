@@ -1,5 +1,5 @@
 import Background from "./background.js";
-import { gameConfig, gameOptions } from "../gameOptions.js";
+import { gameConfig, gameOptions, gamePoints } from "../gameOptions.js";
 
 class Items extends Background {
   constructor(key) {
@@ -14,7 +14,12 @@ class Items extends Background {
 
   poolGems() {
     this.gemGroup = this.add.group({
-      removeCallback: (gem) => this.gemPool.add(gem),
+      removeCallback: (gem) => {
+        if (gem.collected) {
+          this.score += gamePoints.coin;
+        }
+        this.gemPool.add(gem);
+      },
     });
 
     this.gemPool = this.add.group({
@@ -24,9 +29,10 @@ class Items extends Background {
 
   letPlayerCollectWithGems() {
     this.physics.add.overlap(
-      this.player,
       this.gemGroup,
-      function (player, gem) {
+      this.player,
+      function (gem) {
+        gem.collected = true;
         this.tweens.add({
           targets: gem,
           y: gem.y - 100,
@@ -78,6 +84,7 @@ class Items extends Background {
           gem.setVelocityX(platform.body.velocity.x);
           this.gemGroup.add(gem);
         }
+        gem.collected = false;
         gem.setScale(0.75);
         gem.setDepth(2);
       }
@@ -209,9 +216,9 @@ class Items extends Background {
         this.barnacleGroup.add(barnacle);
         barnacle.setDepth(2);
         barnacle.setImmovable(true);
-        barnacle.anims.play("barnacleAttack");
       }
       barnacle.dead = false;
+      barnacle.anims.play("barnacleAttack");
       barnacle.setVelocityX(platform.body.velocity.x);
       barnacle.setVelocityY(0);
       barnacle.alpha = 1;

@@ -1,5 +1,5 @@
 import Player from "./player.js";
-import { gameConfig } from "../gameOptions.js";
+import { gameConfig, gamePoints } from "../gameOptions.js";
 
 class Game extends Player {
   score = 0;
@@ -50,7 +50,7 @@ class Game extends Player {
     super.update();
     console.log(this.dying);
     if (!this.dying) {
-      this.score += 1;
+      this.score += gamePoints.distanceRun;
     }
     this.scoreText.setText(`Score: ${this.score}`);
     this.checkGameOver();
