@@ -36,8 +36,11 @@ class Player extends Platform {
   }
 
   letPlayerJump() {
-    this.input.keyboard.on("keydown-SPACE", this.jump, this);
     this.input.on("pointerdown", this.jump, this);
+  }
+
+  letPlayerShoot() {
+    this.input.keyboard.on("keydown-SPACE", this.shoot, this);
   }
 
   jump() {
