@@ -9,7 +9,6 @@ class Game extends Player {
 
   restartGame() {
     this.score = 0;
-    this.dying = false;
     this.remainingShots = 6;
     this.scene.stop();
     this.scene.start("PreloadGame");
@@ -30,17 +29,30 @@ class Game extends Player {
 
   checkGameOver() {
     if (this.player.y > gameConfig.height) {
-      const gameOverText = this.createText("Game Over");
+      this.dying = true;
+      const gameOverText = this.createText(
+        `
+      Game Over
+      Score: ${this.score}
+      `
+      );
       gameOverText.setDepth(2);
       this.time.delayedCall(1000, this.restartGame, null, this); // delay in ms
     }
   }
 
   create() {
+    this.dying = false;
     super.create();
+    this.scoreText = this.createText(`Score: ${this.score}`, 100, 100);
   }
   update() {
     super.update();
+    console.log(this.dying);
+    if (!this.dying) {
+      this.score += 1;
+    }
+    this.scoreText.setText(`Score: ${this.score}`);
     this.checkGameOver();
   }
 }

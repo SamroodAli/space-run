@@ -21,6 +21,13 @@ export const gameOptions = {
   enemyPercent: () => Phaser.Math.Between(0, 500) < 1,
 };
 
+gamePoints = {
+  distance: 1,
+  barnacle: 2000,
+  kill: 5000,
+  coin: 10000,
+};
+
 export const gameConfig = {
   type: Phaser.Auto,
   width: screen.availWidth,
