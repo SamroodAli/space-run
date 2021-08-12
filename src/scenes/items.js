@@ -163,7 +163,10 @@ class Items extends Background {
 
   recyclebarnacle() {
     this.barnacleGroup.getChildren().forEach((barnacle) => {
-      if (barnacle.x < barnacle.displayWidth / 2) {
+      if (
+        barnacle.x < barnacle.displayWidth / 2 ||
+        barnacle.y > gameConfig.height
+      ) {
         this.barnacleGroup.killAndHide(barnacle);
         this.barnacleGroup.remove(barnacle);
       }

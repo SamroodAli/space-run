@@ -65,7 +65,7 @@ class Player extends Platform {
     barnacle.anims.play("barnacleDead");
     this.laserGroup.killAndHide(laser);
     this.laserGroup.remove(laser);
-    barnacle.setVelocityY(200);
+    barnacle.setVelocityY(300);
     barnacle.dead = true;
   }
 
