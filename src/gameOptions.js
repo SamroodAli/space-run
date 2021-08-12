@@ -16,16 +16,16 @@ export const gameOptions = {
   jumpForce: 400,
   playerStartPosition: 200,
   jumps: 2,
-  coinPercent: 40,
+  coinPercent: 20,
   barnaclePercent: 10,
   enemyPercent: () => Phaser.Math.Between(0, 500) < 1,
 };
 
 export const gamePoints = {
   distanceRun: 1,
-  barnacle: 200,
-  bee: 500,
-  coin: 1000,
+  barnacle: 2000,
+  bee: 5000,
+  coin: 10000,
 };
 
 export const gameConfig = {
