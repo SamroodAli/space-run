@@ -196,25 +196,27 @@ class Items extends Background {
       const barnacleX =
         startPlatform + Phaser.Math.Between(20, platform.displayWidth - 20);
       const barnacleY = posY - 2 * platform.height;
+      let barnacle;
       if (this.barnaclePool.getLength()) {
-        let barnacle = this.barnaclePool.getFirst();
+        barnacle = this.barnaclePool.getFirst();
         barnacle.x = barnacleX;
         barnacle.y = barnacleY;
-        barnacle.alpha = 1;
-        barnacle.active = true;
-        barnacle.visible = true;
-        barnacle.setVelocityX(platform.body.velocity.x);
         this.barnaclePool.remove(barnacle);
       } else {
-        let barnacle = this.physics.add
+        barnacle = this.physics.add
           .sprite(barnacleX, barnacleY, "barnacle")
           .setScale(0.75);
-        barnacle.setImmovable(true);
-        barnacle.setVelocityX(platform.body.velocity.x);
-        barnacle.anims.play("barnacleAttack");
-        barnacle.setDepth(2);
         this.barnacleGroup.add(barnacle);
+        barnacle.setDepth(2);
+        barnacle.setImmovable(true);
       }
+      barnacle.dead = false;
+      barnacle.anims.play("barnacleAttack");
+      barnacle.setVelocityX(platform.body.velocity.x);
+      barnacle.setVelocityY(0);
+      barnacle.alpha = 1;
+      barnacle.active = true;
+      barnacle.visible = true;
     }
   }
 
