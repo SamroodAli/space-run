@@ -51,16 +51,23 @@ class Player extends Platform {
   }
 
   onLaserCollisionWithBee(laser, bee) {
-    console.log(laser);
     bee.anims.stop();
     const currentBee = bee.frame.texture.key.slice(0, 3);
-    console.log(currentBee);
     bee.anims.play(currentBee + "Dead");
     this.laserGroup.killAndHide(laser);
     this.laserGroup.remove(laser);
-    // bee.setVelocityX(500);
     bee.setVelocityY(-300);
     bee.setGravityY(gameOptions.playerGravity);
+  }
+
+  onLaserCollisionWithBarnacle(laser, barnacle) {
+    barnacle.anims.stop();
+    barnacle.anims.play("barnacleDead");
+    this.laserGroup.killAndHide(laser);
+    this.laserGroup.remove(laser);
+    barnacle.setVelocityY(-300);
+    this.barnacleGroup.killAndHide(barnacle);
+    // barnacle.setGravityY(gameOptions.playerGravity);
   }
 
   letPlayerKillBees() {
