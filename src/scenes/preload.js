@@ -177,6 +177,10 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 5,
       frameHeight: 3,
     });
+    this.load.image("emptyGun", emptyGun, {
+      frameWidth: 5,
+      frameHeight: 3,
+    });
   }
 
   create() {

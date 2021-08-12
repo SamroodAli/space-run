@@ -2,6 +2,7 @@ import Platform from "./platform.js";
 import { gameConfig, gameOptions } from "../gameOptions.js";
 class Player extends Platform {
   currentPlayer = "Blue";
+  remainingShots = 5;
   constructor(key) {
     super(key);
   }
@@ -51,16 +52,22 @@ class Player extends Platform {
   }
 
   shoot() {
-    const laser = this.physics.add.sprite(
-      gameOptions.playerStartPosition + 50,
-      this.player.y + 25,
-      `${this.currentPlayer}Laser`
-    );
-    this.gun.anims.play("gunFire");
-    laser.setScale(0.5);
-    laser.setImmovable(true);
-    laser.setVelocityX(400);
-    laser.setDepth(2);
+    if (this.remainingShots > 0) {
+      const laser = this.physics.add.sprite(
+        gameOptions.playerStartPosition + 50,
+        this.player.y + 25,
+        `${this.currentPlayer}Laser`
+      );
+      this.gun.anims.play("gunFire");
+      laser.setScale(0.5);
+      laser.setImmovable(true);
+      laser.setVelocityX(400);
+      laser.setDepth(2);
+      this.remainingShots -= 1;
+      if (this.remainingShots === 0) {
+        this.gun.anims.play("emptyGun");
+      }
+    }
   }
 
   createGun() {
