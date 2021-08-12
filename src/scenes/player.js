@@ -36,6 +36,16 @@ class Player extends Platform {
     );
   }
 
+  letPlayerKillBees() {
+    this.physics.add.overlap(
+      this.laserGroup,
+      this.beesGroup,
+      this.letPlayerKillBee,
+      null,
+      this
+    );
+  }
+
   letPlayerJump() {
     this.input.on("pointerdown", this.jump, this);
   }
@@ -95,6 +105,7 @@ class Player extends Platform {
     this.letPlayerJump();
     this.letPlayerShoot();
     this.letPlayerCollideWithitems();
+    this.letPlayerKillBees();
     this.createGun();
     this.dying = false;
   }
