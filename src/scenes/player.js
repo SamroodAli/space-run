@@ -2,7 +2,7 @@ import Platform from "./platform.js";
 import { gameConfig, gameOptions } from "../gameOptions.js";
 class Player extends Platform {
   currentPlayer = "Blue";
-  remainingShots = 5;
+  remainingShots = 6;
   constructor(key) {
     super(key);
   }
@@ -66,6 +66,10 @@ class Player extends Platform {
       this.remainingShots -= 1;
       if (this.remainingShots === 0) {
         this.gun.anims.play("emptyGun");
+        this.time.delayedCall(3000, () => {
+          this.remainingShots = 6;
+          this.gun.anims.play("gunFire");
+        });
       }
     }
   }
