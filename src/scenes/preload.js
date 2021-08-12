@@ -149,6 +149,23 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     });
+
+    this.load.image("BlueLaser", BlueLaser, {
+      frameWidth: 10,
+      frameHeight: 3,
+    });
+    this.load.image("GreenLaser", GreenLaser, {
+      frameWidth: 10,
+      frameHeight: 3,
+    });
+    this.load.image("RedLaser", RedLaser, {
+      frameWidth: 10,
+      frameHeight: 3,
+    });
+    this.load.image("YellowLaser", YellowLaser, {
+      frameWidth: 10,
+      frameHeight: 3,
+    });
   }
 
   create() {
