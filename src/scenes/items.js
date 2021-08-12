@@ -177,11 +177,13 @@ class Items extends Background {
     this.physics.add.overlap(
       this.player,
       this.barnacleGroup,
-      () => {
-        this.dying = true;
-        this.player.anims.stop();
-        this.player.body.setVelocityY(-200);
-        this.physics.world.removeCollider(this.platformCollider);
+      (player, barnacle) => {
+        if (!barnacle.dead) {
+          this.dying = true;
+          this.player.anims.stop();
+          this.player.body.setVelocityY(-200);
+          this.physics.world.removeCollider(this.platformCollider);
+        }
       },
       null,
       this
