@@ -110,6 +110,8 @@ class Items extends Background {
       let bee = this.physics.add.sprite(posX, posY - 60, "bee");
       bee.setImmovable = true;
       bee.setVelocityX(velocity);
+      bee.body.setSize(20, 40, 8, 8);
+
       this.beesGroup.add(bee);
       bee.anims.play("beeAttack");
       bee.setDepth(2);
