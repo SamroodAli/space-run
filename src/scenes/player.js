@@ -68,6 +68,7 @@ class Player extends Platform {
     barnacle.setVelocityY(-300);
     this.barnacleGroup.killAndHide(barnacle);
     // barnacle.setGravityY(gameOptions.playerGravity);
+    this.barnacleGroup.remove(barnacle);
   }
 
   letPlayerKillBees() {
@@ -75,6 +76,15 @@ class Player extends Platform {
       this.laserGroup,
       this.beesGroup,
       this.onLaserCollisionWithBee,
+      null,
+      this
+    );
+  }
+  letPlayerKillBarnacle() {
+    this.physics.add.collider(
+      this.laserGroup,
+      this.beesGroup,
+      this.onLaserCollisionWithBarnacle,
       null,
       this
     );
@@ -188,6 +198,7 @@ class Player extends Platform {
     this.letPlayerShoot();
     this.letPlayerCollideWithitems();
     this.letPlayerKillBees();
+    this.letPlayerKillBarnacle();
     this.createGun();
   }
   update() {
