@@ -13,7 +13,7 @@ class Game extends Player {
 
   checkGameOver() {
     if (this.player.y > gameConfig.height) {
-      this.add.text(
+      const gameOverText = this.add.text(
         gameConfig.width / 2.5,
         gameConfig.height / 4,
         "Game Over",
@@ -23,6 +23,7 @@ class Game extends Player {
           alignSelf: "center",
         }
       );
+      gameOverText.setDepth(2);
       this.time.delayedCall(1000, this.restartGame, null, this); // delay in ms
     }
   }
