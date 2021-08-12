@@ -224,7 +224,7 @@ class PreloadGame extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: "beeAttack",
+      key: "BeeAttack",
       frames: [{ key: "bee" }, { key: "beeFlat" }],
       frameRate: 10,
       yoyo: true,
@@ -232,8 +232,8 @@ class PreloadGame extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: "flyAttack",
-      frames: [{ key: "bee" }, { key: "beeFlat" }],
+      key: "FlyAttack",
+      frames: [{ key: "fly" }, { key: "flyFlat" }],
       frameRate: 10,
       yoyo: true,
       repeat: -1,

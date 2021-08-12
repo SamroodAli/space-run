@@ -6,6 +6,7 @@ class Items extends Background {
     super(key);
   }
   colors = ["Blue", "Red", "Green", "Yellow"];
+  beeAndfly = ["Bee", "Fly"];
 
   nextGem() {
     return `gem${this.colors[Phaser.Math.Between(0, 3)]}`;
@@ -83,9 +84,14 @@ class Items extends Background {
     }
   }
 
+  flyType = () => `${this.beeAndfly[Phaser.Math.Between(0, 1)]}Attack`;
+
   poolBees() {
     this.beesGroup = this.add.group({
-      removeCallback: (bee) => this.beesPool.add(bee),
+      removeCallback: (bee) => {
+        bee.anims.play(this.flyType());
+        this.beesPool.add(bee);
+      },
     });
 
     this.beesPool = this.add.group({
@@ -105,7 +111,7 @@ class Items extends Background {
         bee.alpha = 1;
         bee.active = true;
         bee.visible = true;
-        bees.setVelocityX(velocity);
+        bee.setVelocityX(velocity);
         this.beesPool.remove(bee);
       } else {
         let bee = this.physics.add.sprite(posX, posY - 60, "bee");
@@ -115,11 +121,21 @@ class Items extends Background {
         bee.setScale(0.75);
 
         this.beesGroup.add(bee);
-        bee.anims.play("beeAttack");
+        bee.anims.play(this.flyType());
         bee.setDepth(2);
       }
     }
   }
+
+  recycleBees() {
+    this.beesGroup.getChildren().forEach((bee) => {
+      if (bee.x < bee.displayWidth / 2) {
+        this.beesGroup.killAndHide(bee);
+        this.beesGroup.remove(bee);
+      }
+    });
+  }
+
   letBeesKillPlayer() {
     this.physics.add.overlap(
       this.player,
@@ -216,6 +232,7 @@ class Items extends Background {
     this.recyclegems();
     this.recyclebarnacle();
     this.addBees();
+    this.recycleBees();
   }
 }
 
