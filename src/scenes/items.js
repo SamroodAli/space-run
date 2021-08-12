@@ -129,7 +129,7 @@ class Items extends Background {
 
   recycleBees() {
     this.beesGroup.getChildren().forEach((bee) => {
-      if (bee.x < bee.displayWidth / 2) {
+      if (bee.x < bee.displayWidth / 2 || bee.y > gameConfig.height) {
         this.beesGroup.killAndHide(bee);
         this.beesGroup.remove(bee);
       }
@@ -149,15 +149,6 @@ class Items extends Background {
       null,
       this
     );
-  }
-
-  letPlayerKillBee(bee) {
-    console.log("am i called");
-    bee.anims.stop();
-    const currentBee = bee.frame.texture.key.slice(3);
-    bee.anims.play(currentBee + "Dead");
-    this.beesGroup.killAndHide(bee);
-    this.beesGroup.remove(bee);
   }
 
   poolbarnacle() {

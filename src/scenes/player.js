@@ -50,11 +50,24 @@ class Player extends Platform {
     );
   }
 
+  onLaserCollisionWithBee(laser, bee) {
+    console.log(laser);
+    bee.anims.stop();
+    const currentBee = bee.frame.texture.key.slice(0, 3);
+    console.log(currentBee);
+    bee.anims.play(currentBee + "Dead");
+    this.laserGroup.killAndHide(laser);
+    this.laserGroup.remove(laser);
+    // bee.setVelocityX(500);
+    bee.setVelocityY(-300);
+    bee.setGravityY(gameOptions.playerGravity);
+  }
+
   letPlayerKillBees() {
     this.physics.add.collider(
       this.laserGroup,
       this.beesGroup,
-      this.letPlayerKillBee,
+      this.onLaserCollisionWithBee,
       null,
       this
     );
