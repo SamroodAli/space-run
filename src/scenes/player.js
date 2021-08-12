@@ -51,12 +51,12 @@ class Player extends Platform {
   }
 
   shoot() {
-    console.log("shoot");
     const laser = this.physics.add.sprite(
       gameOptions.playerStartPosition + 50,
       this.player.y + 25,
       `${this.currentPlayer}Laser`
     );
+    this.gun.anims.play("gunFire");
     laser.setScale(0.5);
     laser.setImmovable(true);
     laser.setVelocityX(400);
@@ -67,7 +67,7 @@ class Player extends Platform {
     this.gun = this.physics.add.sprite(
       gameOptions.playerStartPosition + 40,
       this.player.y + 25,
-      "gun"
+      "loadedGun"
     );
     this.gun.setDepth(2);
   }

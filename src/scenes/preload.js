@@ -31,7 +31,8 @@ import GreenLaser from "../assets/laser/GreenLaser.png";
 import RedLaser from "../assets/laser/RedLaser.png";
 import YellowLaser from "../assets/laser/YellowLaser.png";
 import loadedGun from "../assets/laser/raygunBig.png";
-import gun from "../assets/laser/raygunPurple.png";
+import fireGun from "../assets/laser/raygun.png";
+import emptyGun from "../assets/laser/raygunPurple.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -168,7 +169,11 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 5,
       frameHeight: 3,
     });
-    this.load.image("gun", gun, {
+    this.load.image("loadedGun", loadedGun, {
+      frameWidth: 5,
+      frameHeight: 3,
+    });
+    this.load.image("fireGun", fireGun, {
       frameWidth: 5,
       frameHeight: 3,
     });
@@ -265,6 +270,19 @@ class PreloadGame extends Phaser.Scene {
       yoyo: true,
       repeat: -1,
     });
+
+    this.anims.create({
+      key: "gunFire",
+      frames: [{ key: "loadedGun" }, { key: "fireGun" }, { key: "loadedGun" }],
+      frameRate: 10,
+    });
+
+    // this.anims.create({
+    //   key: "gunFire",
+    //   frames: [{ key: "gun" }],
+    //   frameRate: 10,
+    //   yoyo: true,
+    // });
 
     this.scene.start("Game");
   }
