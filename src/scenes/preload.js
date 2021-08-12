@@ -22,6 +22,10 @@ import barnacle from "../assets/enemies/barnacle_attack.png";
 import barnacleOpen from "../assets/enemies/barnacle.png";
 import bee from "../assets/enemies/bee.png";
 import beeFlat from "../assets/enemies/bee_move.png";
+import beeDead from "../assets/enemies/bee_dead.png";
+import fly from "../assets/enemies/fly.png";
+import flyFlat from "../assets/enemies/fly_move.png";
+import flyDead from "../assets/enemies/fly_dead.png";
 
 import { gameConfig } from "../gameOptions.js";
 
@@ -133,6 +137,14 @@ class PreloadGame extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     });
+    this.load.image("fly", fly, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+    this.load.image("flyFlat", flyFlat, {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
   }
 
   create() {
@@ -213,6 +225,14 @@ class PreloadGame extends Phaser.Scene {
 
     this.anims.create({
       key: "beeAttack",
+      frames: [{ key: "bee" }, { key: "beeFlat" }],
+      frameRate: 10,
+      yoyo: true,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "flyAttack",
       frames: [{ key: "bee" }, { key: "beeFlat" }],
       frameRate: 10,
       yoyo: true,
