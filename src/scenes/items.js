@@ -111,6 +111,7 @@ class Items extends Background {
       bee.setImmovable = true;
       bee.setVelocityX(velocity);
       bee.body.setSize(20, 40, 8, 8);
+      bee.setScale(0.75);
 
       this.beesGroup.add(bee);
       bee.anims.play("beeAttack");
