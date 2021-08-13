@@ -1,18 +1,17 @@
 import Player from "./player.js";
 import { gameConfig, gamePoints } from "../gameOptions.js";
-import Scores from "./scores.js";
 
 class Game extends Player {
   score = 0;
   constructor() {
     super("Game");
+    this.score = 0;
+    this.remainingShots = 6;
   }
 
   restartGame() {
-    this.score = 0;
-    this.remainingShots = 6;
     this.scene.stop();
-    this.scene.start("Scores");
+    this.scene.start("Scores", { score: this.score });
   }
 
   createText(string, posX, posY, fontSize, fill) {
@@ -34,7 +33,6 @@ class Game extends Player {
       const gameOverText = this.createText(
         `
       Game Over
-      Score: ${this.score}
       `
       );
       gameOverText.setDepth(2);
@@ -49,7 +47,6 @@ class Game extends Player {
   }
   update() {
     super.update();
-    console.log(this.dying);
     if (!this.dying) {
       this.score += gamePoints.distanceRun;
     }
