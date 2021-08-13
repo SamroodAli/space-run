@@ -14,3 +14,5 @@ class Scores extends Background {
     return text;
   }
 }
+
+export default Scores;
