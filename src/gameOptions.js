@@ -1,4 +1,5 @@
 import Game from "./scenes/game.js";
+import Scores from "./scenes/scores.js";
 import PreloadGame from "./scenes/preload.js";
 import Phaser from "phaser";
 
@@ -32,7 +33,7 @@ export const gameConfig = {
   type: Phaser.Auto,
   width: screen.availWidth,
   height: screen.availHeight,
-  scene: [PreloadGame, Game],
+  scene: [PreloadGame, Game, Scores],
   physics: {
     default: "arcade",
   },
