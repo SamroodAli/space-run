@@ -1,7 +1,7 @@
-import Game from "./scenes/game.js";
-import Scores from "./scenes/scores.js";
-import PreloadGame from "./scenes/preload.js";
-import Phaser from "phaser";
+import Phaser from 'phaser';
+import Game from './scenes/game.js';
+import Scores from './scenes/scores.js';
+import PreloadGame from './scenes/preload.js';
 
 export const gameOptions = {
   platformSpeedRange: [400, 500],
@@ -30,11 +30,12 @@ export const gamePoints = {
 };
 
 export const gameConfig = {
+  scale: 'mode',
   type: Phaser.Auto,
-  width: screen.availWidth,
-  height: screen.availHeight,
+  width: window.innerWidth,
+  height: window.innerHeight,
   scene: [PreloadGame, Game, Scores],
   physics: {
-    default: "arcade",
+    default: 'arcade',
   },
 };

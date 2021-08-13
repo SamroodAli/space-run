@@ -1,11 +1,10 @@
-import Platform from "./platform.js";
-import { gameConfig, gameOptions, gamePoints } from "../gameOptions.js";
+import Platform from './platform.js';
+import { gameConfig, gameOptions, gamePoints } from '../gameOptions.js';
+
 class Player extends Platform {
-  currentPlayer = "Blue";
+  currentPlayer = 'Blue';
+
   remainingShots = 6;
-  constructor(key) {
-    super(key);
-  }
 
   poolLasers() {
     this.laserGroup = this.add.group({
@@ -21,10 +20,9 @@ class Player extends Platform {
     this.player = this.physics.add.sprite(
       gameOptions.playerStartPosition,
       gameConfig.height / 2,
-      `${this.currentPlayer}Player`
+      `${this.currentPlayer}Player`,
     );
     this.player.setScale(0.5);
-    this.player.setDepth(2);
     this.player.setGravityY(gameOptions.playerGravity);
   }
 
@@ -40,13 +38,14 @@ class Player extends Platform {
       this.player.anims.play(`${this.currentPlayer}Run`);
     }
   }
+
   letPlayerCollideWithPlatform() {
     this.platformCollider = this.physics.add.collider(
       this.player,
       this.platformGroup,
       this.runOnPlatform,
       null,
-      this
+      this,
     );
   }
 
@@ -54,7 +53,7 @@ class Player extends Platform {
     this.score += gamePoints.bee;
     bee.anims.stop();
     const currentBee = bee.frame.texture.key.slice(0, 3);
-    bee.anims.play(currentBee + "Dead");
+    bee.anims.play(`${currentBee}Dead`);
     this.laserGroup.killAndHide(laser);
     this.laserGroup.remove(laser);
     bee.setVelocityY(-300);
@@ -64,7 +63,7 @@ class Player extends Platform {
   onLaserCollisionWithBarnacle(laser, barnacle) {
     this.score += gamePoints.barnacle;
     barnacle.anims.stop();
-    barnacle.anims.play("barnacleDead");
+    barnacle.anims.play('barnacleDead');
     this.laserGroup.killAndHide(laser);
     this.laserGroup.remove(laser);
     barnacle.setVelocityY(300);
@@ -77,25 +76,26 @@ class Player extends Platform {
       this.beesGroup,
       this.onLaserCollisionWithBee,
       null,
-      this
+      this,
     );
   }
+
   letPlayerKillBarnacle() {
     this.physics.add.collider(
       this.laserGroup,
       this.barnacleGroup,
       this.onLaserCollisionWithBarnacle,
       null,
-      this
+      this,
     );
   }
 
   letPlayerJump() {
-    this.input.on("pointerdown", this.jump, this);
+    this.input.on('pointerdown', this.jump, this);
   }
 
   letPlayerShoot() {
-    this.input.keyboard.on("keydown-SPACE", this.shoot, this);
+    this.input.keyboard.on('keydown-SPACE', this.shoot, this);
   }
 
   jump() {
@@ -113,19 +113,19 @@ class Player extends Platform {
 
   reloadGun() {
     this.remainingShots = 6;
-    this.gun.anims.play("gunFire");
+    this.gun.anims.play('gunFire');
   }
 
   emptyGun() {
-    this.gun.anims.play("emptyGun");
+    this.gun.anims.play('emptyGun');
     this.time.delayedCall(
       gameOptions.reloadTime,
       () => {
         this.remainingShots = 6;
-        this.gun.anims.play("gunFire");
+        this.gun.anims.play('gunFire');
       },
       null,
-      this
+      this,
     );
   }
 
@@ -138,7 +138,7 @@ class Player extends Platform {
       laser = this.physics.add.sprite(
         gameOptions.playerStartPosition + 50,
         this.player.y + 25,
-        `${this.currentPlayer}Laser`
+        `${this.currentPlayer}Laser`,
       );
       laser.setImmovable(true);
       this.laserGroup.add(laser);
@@ -148,14 +148,13 @@ class Player extends Platform {
     laser.active = true;
     laser.visible = true;
     laser.setScale(0.5);
-    laser.setDepth(2);
     laser.setImmovable(true);
     return laser;
   }
 
   shoot() {
     if (this.remainingShots > 0) {
-      this.gun.anims.play("gunFire");
+      this.gun.anims.play('gunFire');
       const laser = this.loadLaser();
       laser.setVelocityX(gameOptions.laserSpeed);
       this.remainingShots -= 1;
@@ -178,9 +177,8 @@ class Player extends Platform {
     this.gun = this.physics.add.sprite(
       gameOptions.playerStartPosition + 40,
       this.player.y + 25,
-      "loadedGun"
+      'loadedGun',
     );
-    this.gun.setDepth(2);
   }
 
   fixGunWithPlayer() {
@@ -200,6 +198,7 @@ class Player extends Platform {
     this.letPlayerKillBarnacle();
     this.createGun();
   }
+
   update() {
     super.update();
     this.fixGunWithPlayer();

@@ -1,12 +1,11 @@
-import Background from "./background.js";
-import { gameConfig, gameOptions, gamePoints } from "../gameOptions.js";
+import Phaser from 'phaser';
+import Background from './background.js';
+import { gameConfig, gameOptions, gamePoints } from '../gameOptions.js';
 
 class Items extends Background {
-  constructor(key) {
-    super(key);
-  }
-  colors = ["Blue", "Red", "Green", "Yellow"];
-  beeAndfly = ["bee", "fly"];
+  colors = ['Blue', 'Red', 'Green', 'Yellow'];
+
+  beeAndfly = ['bee', 'fly'];
 
   nextGem() {
     return `gem${this.colors[Phaser.Math.Between(0, 3)]}`;
@@ -31,19 +30,19 @@ class Items extends Background {
     this.physics.add.overlap(
       this.gemGroup,
       this.player,
-      function (gem) {
+      (gem) => {
         gem.collected = true;
         this.tweens.add({
           targets: gem,
           y: gem.y - 100,
           alpha: 0,
           duration: 800,
-          ease: "Cubic.easeOut",
+          ease: 'Cubic.easeOut',
           callbackScope: this,
-          onComplete: function () {
+          onComplete() {
             const playerColor = gem.frame.texture.key.slice(3);
-            if (playerColor != this.currentPlayer) {
-              this.player.setTexture(playerColor + "Player");
+            if (playerColor !== this.currentPlayer) {
+              this.player.setTexture(`${playerColor}Player`);
               this.currentPlayer = playerColor;
             }
             this.gemGroup.killAndHide(gem);
@@ -52,7 +51,7 @@ class Items extends Background {
         });
       },
       null,
-      this
+      this,
     );
   }
 
@@ -86,7 +85,6 @@ class Items extends Background {
         }
         gem.collected = false;
         gem.setScale(0.75);
-        gem.setDepth(2);
       }
     }
   }
@@ -107,11 +105,11 @@ class Items extends Background {
 
   addBees() {
     if (gameOptions.enemyPercent()) {
-      let posX = gameConfig.width + 50;
-      let posY = gameConfig.height / 2 + Phaser.Math.Between(-100, 100);
-      let velocity = -300;
+      const posX = gameConfig.width + 50;
+      const posY = gameConfig.height / 2 + Phaser.Math.Between(-100, 100);
+      const velocity = -300;
       if (this.beesPool.getLength()) {
-        let bee = this.beesPool.getFirst();
+        const bee = this.beesPool.getFirst();
         bee.anims.play(this.flyType());
         bee.x = posX;
         bee.y = posY;
@@ -121,7 +119,7 @@ class Items extends Background {
         bee.setVelocityX(velocity);
         this.beesPool.remove(bee);
       } else {
-        let bee = this.physics.add.sprite(posX, posY - 60, "bee");
+        const bee = this.physics.add.sprite(posX, posY - 60, 'bee');
         bee.setImmovable = true;
         bee.setVelocityX(velocity);
         bee.body.setSize(20, 30, 8, 8);
@@ -129,7 +127,6 @@ class Items extends Background {
 
         this.beesGroup.add(bee);
         bee.anims.play(this.flyType());
-        bee.setDepth(2);
       }
     }
   }
@@ -154,7 +151,7 @@ class Items extends Background {
         this.physics.world.removeCollider(this.platformCollider);
       },
       null,
-      this
+      this,
     );
   }
 
@@ -171,8 +168,8 @@ class Items extends Background {
   recyclebarnacle() {
     this.barnacleGroup.getChildren().forEach((barnacle) => {
       if (
-        barnacle.x < barnacle.displayWidth / 2 ||
-        barnacle.y > gameConfig.height
+        barnacle.x < barnacle.displayWidth / 2
+        || barnacle.y > gameConfig.height
       ) {
         this.barnacleGroup.killAndHide(barnacle);
         this.barnacleGroup.remove(barnacle);
@@ -193,15 +190,14 @@ class Items extends Background {
         }
       },
       null,
-      this
+      this,
     );
   }
 
   addBernacleOnPlatform(posX, posY, platform) {
     if (Phaser.Math.Between(0, 100) < gameOptions.barnaclePercent) {
       const startPlatform = posX - platform.displayWidth / 2;
-      const barnacleX =
-        startPlatform + Phaser.Math.Between(20, platform.displayWidth - 20);
+      const barnacleX = startPlatform + Phaser.Math.Between(20, platform.displayWidth - 20);
       const barnacleY = posY - 2 * platform.height;
       let barnacle;
       if (this.barnaclePool.getLength()) {
@@ -211,14 +207,13 @@ class Items extends Background {
         this.barnaclePool.remove(barnacle);
       } else {
         barnacle = this.physics.add
-          .sprite(barnacleX, barnacleY, "barnacle")
+          .sprite(barnacleX, barnacleY, 'barnacle')
           .setScale(0.75);
         this.barnacleGroup.add(barnacle);
-        barnacle.setDepth(2);
         barnacle.setImmovable(true);
       }
       barnacle.dead = false;
-      barnacle.anims.play("barnacleAttack");
+      barnacle.anims.play('barnacleAttack');
       barnacle.setVelocityX(platform.body.velocity.x);
       barnacle.setVelocityY(0);
       barnacle.alpha = 1;

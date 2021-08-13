@@ -1,10 +1,8 @@
-import Items from "./items.js";
-import { gameConfig, gameOptions } from "../gameOptions.js";
-class Platform extends Items {
-  constructor(key) {
-    super(key);
-  }
+import Phaser from 'phaser';
+import Items from './items.js';
+import { gameConfig, gameOptions } from '../gameOptions.js';
 
+class Platform extends Items {
   poolPlatforms() {
     this.platformGroup = this.add.group({
       removeCallback: (platform) => this.platformPool.add(platform),
@@ -26,14 +24,13 @@ class Platform extends Items {
       this.platformPool.remove(platform);
       platform.displayWidth = platformWidth;
     } else {
-      platform = this.add.tileSprite(posX, posY, platformWidth, 32, "platform");
+      platform = this.add.tileSprite(posX, posY, platformWidth, 32, 'platform');
       this.physics.add.existing(platform);
       platform.body.setImmovable(true);
       platform.body.setVelocityX(
-        Phaser.Math.Between(...gameOptions.platformSpeedRange) * -1
+        Phaser.Math.Between(...gameOptions.platformSpeedRange) * -1,
       );
       this.platformGroup.add(platform);
-      platform.setDepth(2);
     }
 
     super.addGemOnPlatform(posX, posY, platform);
@@ -46,8 +43,7 @@ class Platform extends Items {
     let rightmostPlatformHeightFromBottom = 0;
 
     this.platformGroup.getChildren().forEach((platform) => {
-      let platformDistance =
-        gameConfig.width - (platform.x + platform.displayWidth / 2);
+      const platformDistance = gameConfig.width - (platform.x + platform.displayWidth / 2);
 
       if (platformDistance < minDistance) {
         minDistance = platformDistance;
@@ -61,27 +57,23 @@ class Platform extends Items {
     }, this);
 
     if (minDistance > this.nextPlatformDistance) {
-      let nextPlatformWidth = Phaser.Math.Between(
-        ...gameOptions.platformSizeRange
+      const nextPlatformWidth = Phaser.Math.Between(
+        ...gameOptions.platformSizeRange,
       );
-      let platformRandomHeight =
-        gameOptions.platformHeightScale *
-        Phaser.Math.Between(...gameOptions.platformHeightRange);
-      let nextPlatformGap =
-        rightmostPlatformHeightFromBottom + platformRandomHeight;
-      let minPlatformHeight =
-        gameConfig.height * gameOptions.platformVerticalLimit[0];
-      let maxPlatformHeight =
-        gameConfig.height * gameOptions.platformVerticalLimit[1];
-      let nextPlatformHeight = Phaser.Math.Clamp(
+      const platformRandomHeight = gameOptions.platformHeightScale
+        * Phaser.Math.Between(...gameOptions.platformHeightRange);
+      const nextPlatformGap = rightmostPlatformHeightFromBottom + platformRandomHeight;
+      const minPlatformHeight = gameConfig.height * gameOptions.platformVerticalLimit[0];
+      const maxPlatformHeight = gameConfig.height * gameOptions.platformVerticalLimit[1];
+      const nextPlatformHeight = Phaser.Math.Clamp(
         nextPlatformGap,
         minPlatformHeight,
-        maxPlatformHeight
+        maxPlatformHeight,
       );
       this.addPlatform(
         nextPlatformWidth,
         gameConfig.width + nextPlatformWidth / 2,
-        nextPlatformHeight
+        nextPlatformHeight,
       );
     }
   }
@@ -93,7 +85,7 @@ class Platform extends Items {
     this.addPlatform(
       gameConfig.width,
       gameConfig.width / 2,
-      gameConfig.height * gameOptions.platformVerticalLimit[1]
+      gameConfig.height * gameOptions.platformVerticalLimit[1],
     );
   }
 
