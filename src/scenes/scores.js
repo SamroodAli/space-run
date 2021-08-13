@@ -1,4 +1,5 @@
 import Background from "./background.js";
+import { getScores } from "./leaderBoard";
 
 class Scores extends Background {
   constructor() {
@@ -7,6 +8,7 @@ class Scores extends Background {
 
   init(data) {
     this.score = data.score;
+    getScores();
   }
 
   create() {
