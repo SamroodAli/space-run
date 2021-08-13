@@ -12,7 +12,7 @@ class Game extends Player {
     this.score = 0;
     this.remainingShots = 6;
     this.scene.stop();
-    this.scene.start("PreloadGame");
+    this.scene.start("Scores");
   }
 
   createText(string, posX, posY, fontSize, fill) {
