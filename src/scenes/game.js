@@ -1,5 +1,6 @@
 import Player from "./player.js";
 import { gameConfig, gamePoints } from "../gameOptions.js";
+import Scores from "./scores.js";
 
 class Game extends Player {
   score = 0;
