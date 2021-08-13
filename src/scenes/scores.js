@@ -1,8 +1,8 @@
-import Background from './background.js';
+import Background from "./background.js";
 
 class Scores extends Background {
   constructor() {
-    super('Scores');
+    super("Scores");
   }
 
   init(data) {
