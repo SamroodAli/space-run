@@ -7,12 +7,16 @@
     <title>Space Run</title>
     <style>
       #scores {
-        display: none;
+        display: block;
       }
     </style>
   </head>
   <body>
     <section id="scores">
+      <form>
+        <input type="text" name="name" id="name" placeholder="Enter Name" />
+        <input type="submit" value="Submit" />
+      </form>
       <h1>LeaderBoard</h1>
       <table>
         <thead>
@@ -21,12 +25,7 @@
             <th>Score</th>
           </tr>
         </thead>
-        <tbody id="scoresData">
-          <tr>
-            <td>Samrood</td>
-            <td>20000</td>
-          </tr>
-        </tbody>
+        <tbody id="scoresData"></tbody>
       </table>
     </section>
   </body>
