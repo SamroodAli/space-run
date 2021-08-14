@@ -5,14 +5,13 @@ class Scores extends Background {
     super("Scores");
   }
 
-  init(data) {
+  init = async (data) => {
     this.score = data.score;
-    leaderBoard.getScores();
-  }
+    new leaderBoard(this.score);
+  };
 
   create() {
     super.create();
-    this.createText(`Score: ${this.score}`, 100, 100);
   }
 
   update() {
