@@ -8,7 +8,7 @@ class Scores extends Background {
 
   init = async (data) => {
     this.score = data.score;
-    LeaderBoard.init(this.score);
+    LeaderBoard.init(this.score, this.restartGame);
   };
 
   create() {
@@ -19,7 +19,8 @@ class Scores extends Background {
     super.update();
   }
   restartGame = () => {
-    this.scene.restart("Game");
+    this.scene.stop();
+    this.scene.start("Game");
   };
 }
 

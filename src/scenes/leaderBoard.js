@@ -6,16 +6,28 @@ export default class leaderBoard {
   scoreSection = document.getElementById("scores");
   nameForm = document.getElementById("nameForm");
   scoresData = document.getElementById("scoresData");
+  restartBtn = document.getElementById("restartBtn");
+
+  constructor() {
+    this.restartBtn.addEventListener("click", this.onRestartBtnClick);
+  }
+
+  onRestartBtnClick = () => {
+    this.scoreSection.style.display = "none";
+    this.restartGame();
+  };
+
   filter = new Filter();
   cache = [];
 
-  init(score) {
+  init(score, restartGame) {
     this.userScore = score;
+    this.restartGame = restartGame;
     this.handleUserScore();
   }
 
   handleUserScore() {
-    console.log(this.cache);
+    this.scoreSection.style.display = "grid";
     if (this.cache) {
       this.displayRanks(this.cache);
     }
@@ -57,7 +69,6 @@ export default class leaderBoard {
   };
 
   displayRanks = (ranks) => {
-    this.scoreSection.style.display = "grid";
     const td = (data) => {
       const td = document.createElement("td");
       td.textContent = data;
