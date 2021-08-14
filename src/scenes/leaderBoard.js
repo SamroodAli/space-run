@@ -1,17 +1,24 @@
-const gameId = "7AFpqYpUFBRMfnxrIuP6";
 import Filter from "bad-words";
 export default class leaderBoard {
   baseURL = "https://us-central1-js-capstone-backend.cloudfunctions.net/api";
+  gameId = "7AFpqYpUFBRMfnxrIuP6";
 
   scoreSection = document.getElementById("scores");
   nameForm = document.getElementById("nameForm");
+  nameInput = document.getElementById("name");
   scoresData = document.getElementById("scoresData");
   restartBtn = document.getElementById("restartBtn");
   scoresTable = document.getElementById("scoresTable");
 
   constructor() {
     this.restartBtn.addEventListener("click", this.onRestartBtnClick);
+    this.nameForm.addEventListener("submit", this.nameFormSubmit);
   }
+
+  nameFormSubmit = (event) => {
+    event.preventDefault();
+    this.userName = nameForm.value;
+  };
 
   onRestartBtnClick = () => {
     this.scoreSection.style.display = "none";
