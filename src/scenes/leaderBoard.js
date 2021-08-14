@@ -50,6 +50,10 @@ export default class leaderBoard {
     });
     return scores;
   };
+
+  displayScores(scores) {
+    console.log(scores);
+  }
 }
 
 // const scoreSection = document.getElementById("scores");
