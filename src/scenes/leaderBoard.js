@@ -29,13 +29,22 @@ export default class leaderBoard {
     return result.sort((a, b) => a.score - b.score);
   };
 
-  filterScores = ({ result }) => {
-    const scores = {};
+  getRanks = ({ result }, userScore) => {
+    const cache = {};
+    const scores = [];
+
     const records = 0;
     const max = 10;
     result.forEach((record) => {
-      if (records < max && !scores[record.user]) {
-        scores[record.name] = record.score;
+      if (records < max && !cache[record.user]) {
+        if (userScore > record.user) {
+          const name = null; //get name
+          scores.push({ name, score: userScore });
+          cache[record.name] = userScore;
+          record += 1;
+        }
+        cache[record.name] = record.score;
+        scores.push(record);
         record += 1;
       }
     });
