@@ -42,13 +42,15 @@ export default class leaderBoard {
     const scores = [];
     let ranks = 0;
     const max = 10;
+    let userEntered = false;
     result.forEach((record) => {
       if (ranks < max && !cache[record.user]) {
-        if (this.userScore > record.score) {
+        if (this.userScore > record.score && !userEntered) {
           const name = "Samrood"; //get name
-          cache[record.name] = this.userScore;
+          cache[name] = this.userScore;
           ranks += 1;
-          scores.push({ name, score: this.userScore, rank: ranks });
+          scores.push({ user: name, score: this.userScore, rank: ranks });
+          userEntered = true;
         }
         cache[record.name] = record.score;
         scores.push(record);
