@@ -7,6 +7,7 @@ export default class leaderBoard {
   nameForm = document.getElementById("nameForm");
   scoresData = document.getElementById("scoresData");
   restartBtn = document.getElementById("restartBtn");
+  scoresTable = document.getElementById("scoresTable");
 
   constructor() {
     this.restartBtn.addEventListener("click", this.onRestartBtnClick);
@@ -78,8 +79,9 @@ export default class leaderBoard {
     const tr = () => {
       return document.createElement("tr");
     };
-    console.log(ranks);
-    this.scoresData.innerHTML = "";
+    if (this.cache.length) {
+      this.scoresData.innerHTML = "";
+    }
     ranks.forEach((user) => {
       const row = tr();
       const rank = td(user.rank);
