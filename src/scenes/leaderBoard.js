@@ -17,7 +17,9 @@ export default class leaderBoard {
 
   nameFormSubmit = (event) => {
     event.preventDefault();
-    this.userName = nameForm.value;
+    this.userName = this.nameInput.value;
+    const newRecord = { user: this.userName, score: this.userScore };
+    this.talkToApi(false, newRecord).then(this.handleUserScore);
   };
 
   onRestartBtnClick = () => {
@@ -29,21 +31,23 @@ export default class leaderBoard {
   cache = [];
 
   init(score, restartGame) {
+    this.nameInput.value = this.userName;
     this.userScore = score;
     this.restartGame = restartGame;
     this.handleUserScore();
   }
 
-  handleUserScore() {
+  handleUserScore = () => {
     this.scoreSection.style.display = "grid";
     if (this.cache) {
       this.displayRanks(this.cache);
     }
     this.talkToApi()
       .then(this.sortInDescScores)
+      .then(this.filterRecords)
       .then(this.getRanks)
       .then(this.displayRanks);
-  }
+  };
 
   talkToApi = async (get = true, data) => {
     const fetchConfig = {
@@ -68,9 +72,18 @@ export default class leaderBoard {
   };
 
   getRanks = (result) => {
-    const ranks = result.map((record, rank) => {
+    return result.map((record, rank) => {
       record.rank = rank + 1;
       return record;
+    });
+  };
+
+  filterRecords = (result) => {
+    let cache = {};
+    const ranks = result.filter((record) => {
+      const isUnique = !cache[record.user];
+      cache[record.user] = true;
+      return isUnique;
     });
     this.cache = ranks;
     return ranks;
