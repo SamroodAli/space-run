@@ -9,21 +9,37 @@ export default class leaderBoard {
   scoresData = document.getElementById("scoresData");
   restartBtn = document.getElementById("restartBtn");
   scoresTable = document.getElementById("scoresTable");
+  caching = true;
+  submitted = false;
+  gaming = true;
 
   constructor() {
     this.restartBtn.addEventListener("click", this.onRestartBtnClick);
     this.nameForm.addEventListener("submit", this.nameFormSubmit);
+    this.handleUserScore();
   }
 
   nameFormSubmit = (event) => {
     event.preventDefault();
+    if (!this.submitted) {
+      this.sendScore();
+      this.submitted = true;
+    } else {
+      alert("Score already submitted");
+    }
+  };
+
+  sendScore = () => {
     this.userName = this.nameInput.value;
     const newRecord = { user: this.userName, score: this.userScore };
     this.talkToApi(false, newRecord).then(this.handleUserScore);
+    this.submit;
   };
 
   onRestartBtnClick = () => {
+    this.submitted = false;
     this.scoreSection.style.display = "none";
+    this.gaming = true;
     this.restartGame();
   };
 
@@ -31,14 +47,22 @@ export default class leaderBoard {
   cache = [];
 
   init(score, restartGame) {
-    this.nameInput.value = this.userName;
+    this.gaming = false;
+    if (this.userName) {
+      this.sendScore();
+      this.nameInput.value = this.userName;
+    }
     this.userScore = score;
     this.restartGame = restartGame;
     this.handleUserScore();
   }
 
   handleUserScore = () => {
-    this.scoreSection.style.display = "grid";
+    if (!this.caching && !this.gaming) {
+      this.scoreSection.style.display = "grid";
+    } else {
+      this.caching = false;
+    }
     if (this.cache) {
       this.displayRanks(this.cache);
     }

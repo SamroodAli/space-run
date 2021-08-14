@@ -1,27 +1,30 @@
-import Player from './player.js';
-import { gameConfig, gamePoints } from '../gameOptions.js';
+import Player from "./player.js";
+import { gameConfig, gamePoints } from "../gameOptions.js";
 
 class Game extends Player {
   score = 0;
 
   constructor() {
-    super('Game');
+    super("Game");
+  }
+
+  init() {
     this.score = 0;
     this.remainingShots = 6;
   }
 
   restartGame() {
     this.scene.stop();
-    this.scene.start('Scores', { score: this.score });
+    this.scene.start("Scores", { score: this.score });
   }
 
   checkGameOver() {
     if (this.player.y > gameConfig.height) {
       this.dying = true;
       const gameOverText = this.createText(
-        'Game Over',
+        "Game Over",
         gameConfig.width / 2.5,
-        gameConfig.height / 4,
+        gameConfig.height / 4
       );
       gameOverText.setDepth(2);
       this.time.delayedCall(1000, this.restartGame, null, this); // delay in ms
