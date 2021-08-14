@@ -11,12 +11,6 @@ body {
   position: absolute;
   width: 100%;
 
-  table,
-  tr td {
-    border: 1px solid black;
-    padding: 1rem;
-  }
-
   tbody {
     display: block;
     height: 75vh;
@@ -35,6 +29,6 @@ body {
   }
 
   table {
-    width: 100%;
+    width: 50%;
   }
 }
