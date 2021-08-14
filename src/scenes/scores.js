@@ -18,6 +18,9 @@ class Scores extends Background {
   update() {
     super.update();
   }
+  restartGame = () => {
+    this.scene.restart("Game");
+  };
 }
 
 export default Scores;

@@ -15,6 +15,10 @@ export default class leaderBoard {
   }
 
   handleUserScore() {
+    console.log(this.cache);
+    if (this.cache) {
+      this.displayRanks(this.cache);
+    }
     this.talkToApi()
       .then(this.sortInDescScores)
       .then(this.getRanks)
@@ -44,13 +48,16 @@ export default class leaderBoard {
   };
 
   getRanks = (result) => {
-    return result.map((record, rank) => {
+    const ranks = result.map((record, rank) => {
       record.rank = rank + 1;
       return record;
     });
+    this.cache = ranks;
+    return ranks;
   };
 
   displayRanks = (ranks) => {
+    this.scoreSection.style.display = "grid";
     const td = (data) => {
       const td = document.createElement("td");
       td.textContent = data;
@@ -70,6 +77,5 @@ export default class leaderBoard {
       row.append(rank, name, score);
       this.scoresData.appendChild(row);
     });
-    this.scoreSection.style.display = "grid";
   };
 }
