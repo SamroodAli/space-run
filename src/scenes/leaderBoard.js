@@ -43,11 +43,9 @@ export default class leaderBoard {
     return result.sort((a, b) => b.score - a.score);
   };
 
-  postResult = () => {};
-
   getRanks = (result) => {
     return result.map((record, rank) => {
-      record.rank = rank;
+      record.rank = rank + 1;
       return record;
     });
   };
