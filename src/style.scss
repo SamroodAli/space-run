@@ -9,5 +9,32 @@ body {
 
 #scores {
   position: absolute;
-  top: 2rem;
+  width: 100%;
+
+  table,
+  tr td {
+    border: 1px solid black;
+    padding: 1rem;
+  }
+
+  tbody {
+    display: block;
+    height: 75vh;
+    overflow: auto;
+  }
+
+  thead,
+  tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  thead {
+    width: calc(100% - 1em);
+  }
+
+  table {
+    width: 100%;
+  }
 }

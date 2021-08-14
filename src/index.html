@@ -11,14 +11,20 @@
       }
     </style>
   </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+    crossorigin="anonymous"
+  />
   <body>
     <section id="scores">
+      <h1>LeaderBoard</h1>
       <form id="nameForm">
         <input type="text" name="name" id="name" placeholder="Enter Name" />
         <input type="submit" value="Submit" />
       </form>
-      <h1>LeaderBoard</h1>
-      <table>
+      <table id="scoresTable">
         <thead>
           <tr>
             <th>Rank</th>

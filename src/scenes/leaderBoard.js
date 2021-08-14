@@ -3,62 +3,53 @@ import Filter from "bad-words";
 export default class leaderBoard {
   baseURL = "https://us-central1-js-capstone-backend.cloudfunctions.net/api";
 
-  fetchConfig = {
-    method: "GET",
-    mode: "cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   scoreSection = document.getElementById("scores");
   nameForm = document.getElementById("nameForm");
   scoresData = document.getElementById("scoresData");
   filter = new Filter();
+  cache = [];
 
-  constructor(userScore) {
-    this.userScore = userScore;
-    this.getScores()
+  init(score) {
+    this.userScore = score;
+    this.handleUserScore();
+  }
+
+  handleUserScore() {
+    this.talkToApi()
       .then(this.sortInDescScores)
       .then(this.getRanks)
       .then(this.displayRanks);
   }
 
-  getScores = async () => {
+  talkToApi = async (get = true, data) => {
+    const fetchConfig = {
+      method: get ? "GET" : "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
     const response = await fetch(
       `${this.baseURL}/games/${this.gameId}/scores`,
-      this.fetchConfig
+      fetchConfig
     );
     return response.json();
   };
 
   sortInDescScores = ({ result }) => {
-    return result.sort((a, b) => a.score - b.score);
+    return result.sort((a, b) => b.score - a.score);
   };
 
+  postResult = () => {};
+
   getRanks = (result) => {
-    const cache = {};
-    const scores = [];
-    let ranks = 0;
-    const max = 10;
-    let userEntered = false;
-    result.forEach((record) => {
-      if (ranks < max && !cache[record.user]) {
-        if (this.userScore > record.score && !userEntered) {
-          const name = "Samrood"; //get name
-          cache[name] = this.userScore;
-          ranks += 1;
-          scores.push({ user: name, score: this.userScore, rank: ranks });
-          userEntered = true;
-        }
-        cache[record.name] = record.score;
-        scores.push(record);
-        ranks += 1;
-        record.rank = ranks;
-      }
+    return result.map((record, rank) => {
+      record.rank = rank;
+      return record;
     });
-    return scores;
   };
 
   displayRanks = (ranks) => {
@@ -81,6 +72,6 @@ export default class leaderBoard {
       row.append(rank, name, score);
       this.scoresData.appendChild(row);
     });
-    this.scoreSection.style.display = "block";
+    this.scoreSection.style.display = "grid";
   };
 }

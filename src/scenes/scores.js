@@ -1,5 +1,6 @@
 import Background from "./background.js";
 import leaderBoard from "./leaderBoard";
+const LeaderBoard = new leaderBoard();
 class Scores extends Background {
   constructor() {
     super("Scores");
@@ -7,7 +8,7 @@ class Scores extends Background {
 
   init = async (data) => {
     this.score = data.score;
-    new leaderBoard(this.score);
+    LeaderBoard.init(this.score);
   };
 
   create() {
