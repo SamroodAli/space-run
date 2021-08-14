@@ -3,6 +3,8 @@ import Filter from "bad-words";
 export default class leaderBoard {
   constructor(userScore) {
     this.userScore = userScore;
+    const scores = await this.getScores();
+    this.displayScores(scores);
   }
 
   baseURL = "https://us-central1-js-capstone-backend.cloudfunctions.net/api";
