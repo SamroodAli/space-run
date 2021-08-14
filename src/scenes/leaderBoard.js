@@ -70,6 +70,7 @@ export default class leaderBoard {
       return document.createElement("tr");
     };
     console.log(ranks);
+    this.scoresData.innerHTML = "";
     ranks.forEach((user) => {
       const row = tr();
       const rank = td(user.rank);
@@ -81,6 +82,3 @@ export default class leaderBoard {
     this.scoreSection.style.display = "block";
   };
 }
-
-// // scoreSection.style.display = "block";
-// // scoresData.innerHTML = "";
