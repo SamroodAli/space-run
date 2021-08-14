@@ -1,6 +1,5 @@
 import Background from "./background.js";
-import { getScores } from "./leaderBoard";
-
+import leaderBoard from "./leaderBoard";
 class Scores extends Background {
   constructor() {
     super("Scores");
@@ -8,7 +7,7 @@ class Scores extends Background {
 
   init(data) {
     this.score = data.score;
-    getScores();
+    leaderBoard.getScores();
   }
 
   create() {

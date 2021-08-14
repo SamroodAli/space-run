@@ -48,6 +48,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "bad-wwords": "^3.0.4",
     "phaser": "^3.55.2"
   }
 }

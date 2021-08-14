@@ -1,18 +1,18 @@
-import Phaser from 'phaser';
-import { gameConfig, gameOptions } from '../gameOptions.js';
+import Phaser from "phaser";
+import { gameConfig, gameOptions } from "../gameOptions.js";
 
 class Background extends Phaser.Scene {
   createText(string, posX, posY, fontSize, fill) {
     const text = this.add.text(posX, posY, string, {
-      fill: fill || '#000',
-      fontSize: fontSize || '40px',
+      fill: fill || "#000",
+      fontSize: fontSize || "40px",
     });
     return text;
   }
 
   setBackground() {
     this.background = this.add
-      .image(gameConfig.width / 2, gameConfig.height / 2, 'blueLand')
+      .image(gameConfig.width / 2, gameConfig.height / 2, "blueLand")
       .setScrollFactor(1, 0);
     this.background.displayWidth = gameConfig.width;
     this.background.setDepth(-3);
@@ -32,7 +32,7 @@ class Background extends Phaser.Scene {
       const mountain = this.physics.add.sprite(
         lastMountainX + Phaser.Math.Between(100, 350),
         gameConfig.height + Phaser.Math.Between(20, 120),
-        'mountain',
+        "mountain"
       );
       mountain.setOrigin(0.5, 1);
       mountain.body.setVelocityX(gameOptions.mountainSpeed * -1);
@@ -54,9 +54,6 @@ class Background extends Phaser.Scene {
         mountain.x = lastMountainX + Phaser.Math.Between(100, 350);
         mountain.y = gameConfig.height + Phaser.Math.Between(0, 100);
         mountain.setFrame(Phaser.Math.Between(0, 3));
-        if (Phaser.Math.Between(0, 1)) {
-          mountain.setDepth(1);
-        }
       }
     });
   }
