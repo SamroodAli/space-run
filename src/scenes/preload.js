@@ -347,7 +347,7 @@ class PreloadGame extends Phaser.Scene {
       yoyo: true,
     });
 
-    this.scene.start("Game");
+    this.scene.start("Main");
   }
 }
 export default PreloadGame;

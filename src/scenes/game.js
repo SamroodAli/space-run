@@ -15,7 +15,7 @@ class Game extends Player {
 
   restartGame() {
     this.scene.stop();
-    this.scene.start("Scores", { score: this.score });
+    this.scene.start("Main", { score: this.score, gameOver: true });
   }
 
   checkGameOver() {
