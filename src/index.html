@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Space Run</title>
     <style>
+      #start {
+        display: none;
+      }
+
       #scores {
         display: none;
       }
@@ -18,12 +22,15 @@
     />
   </head>
   <body>
-    <section id="scores">
-      <h1>LeaderBoard</h1>
+    <section id="start">
+      <h1>Welcome to the space run</h1>
       <form id="nameForm">
         <input type="text" name="name" id="name" placeholder="Enter Name" />
         <input type="submit" value="Submit" />
       </form>
+    </section>
+    <section id="scores">
+      <h1>LeaderBoard</h1>
       <table
         id="scoresTable"
         class="table table-responsive table-striped table-info table-borderless"

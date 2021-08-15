@@ -19,18 +19,14 @@ export default class leaderBoard {
     this.handleUserScore();
   }
 
+  onStart = () => {};
+
   nameFormSubmit = (event) => {
     event.preventDefault();
-    if (!this.submitted) {
-      this.sendScore();
-      this.submitted = true;
-    } else {
-      alert("Score already submitted");
-    }
+    this.userName = this.nameInput.value;
   };
 
   sendScore = () => {
-    this.userName = this.nameInput.value;
     const newRecord = { user: this.userName, score: this.userScore };
     this.talkToApi(false, newRecord).then(this.handleUserScore);
     this.submit;
@@ -40,6 +36,7 @@ export default class leaderBoard {
     this.submitted = false;
     this.scoreSection.style.display = "none";
     this.gaming = true;
+    s;
     this.restartGame();
   };
 
