@@ -4,10 +4,12 @@ export default class leaderBoard {
   gameId = "7AFpqYpUFBRMfnxrIuP6";
 
   scoreSection = document.getElementById("scores");
+  startSection = document.getElementById("start");
   nameForm = document.getElementById("nameForm");
   nameInput = document.getElementById("name");
   scoresData = document.getElementById("scoresData");
   restartBtn = document.getElementById("restartBtn");
+  startBtn = document.getElementById("startBtn");
   scoresTable = document.getElementById("scoresTable");
   caching = true;
   submitted = false;
@@ -19,7 +21,9 @@ export default class leaderBoard {
     this.handleUserScore();
   }
 
-  onStart = () => {};
+  onStart = () => {
+    this.startSection.style.display = "grid";
+  };
 
   nameFormSubmit = (event) => {
     event.preventDefault();
