@@ -11,13 +11,9 @@ export default class leaderBoard {
 
   nameInput = document.getElementById("name");
 
-  usernameHeading = document.getElementById("username");
-
   scoresData = document.getElementById("scoresData");
 
   restartBtn = document.getElementById("restartBtn");
-
-  startBtn = document.getElementById("startBtn");
 
   scoresTable = document.getElementById("scoresTable");
 
@@ -32,7 +28,6 @@ export default class leaderBoard {
   constructor() {
     this.restartBtn.addEventListener("click", this.onRestartBtnClick);
     this.nameForm.addEventListener("submit", this.nameFormSubmit);
-    this.startBtn.addEventListener("click", this.onRestartBtnClick);
     this.handleUserScore();
   }
 
@@ -44,7 +39,7 @@ export default class leaderBoard {
   nameFormSubmit = (event) => {
     event.preventDefault();
     this.username = this.nameInput.value;
-    this.usernameHeading.textContent = `Welcome ${this.username}`;
+    this.onRestartBtnClick();
   };
 
   sendScore = () => {
