@@ -36,12 +36,38 @@
         <input
           type="submit"
           value="Start Game"
-          class="form-control bg-info text-dark p-3 w-50 mx-auto my-3"
+          class="
+            form-control
+            bg-info
+            text-light
+            p-3
+            w-50
+            mx-auto
+            my-3
+            fw-bolder
+            fs-3
+          "
         />
       </form>
     </section>
     <section id="scores">
-      <h1>LeaderBoard</h1>
+      <h1 class="text-center m-3 text-info fw-bolder">LeaderBoard</h1>
+      <button
+        id="restartBtn"
+        class="
+          form-control
+          bg-info
+          text-light
+          p-3
+          w-50
+          mx-auto
+          my-3
+          fw-bolder
+          fs-3
+        "
+      >
+        Restart
+      </button>
       <table
         id="scoresTable"
         class="table table-responsive table-striped table-info table-borderless"
@@ -61,7 +87,6 @@
           </tr>
         </tbody>
       </table>
-      <button id="restartBtn" class="btn btn-info m-3">Restart</button>
     </section>
   </body>
 </html>
