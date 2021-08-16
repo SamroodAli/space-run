@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser from "phaser";
 
 export const gameOptions = {
   platformSpeedRange: [400, 500],
@@ -27,11 +27,11 @@ export const gamePoints = {
 };
 
 export const gameConfig = {
-  scale: 'mode',
+  scale: "mode",
   type: Phaser.Auto,
   width: window.innerWidth,
   height: window.innerHeight,
   physics: {
-    default: 'arcade',
+    default: "arcade",
   },
 };
