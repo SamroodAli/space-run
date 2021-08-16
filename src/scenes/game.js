@@ -32,8 +32,8 @@ class Game extends Player {
   }
 
   create() {
-    this.dying = false;
     super.create();
+    this.dying = false;
     this.scoreText = this.createText(`Score: ${this.score}`, 100, 100);
   }
 

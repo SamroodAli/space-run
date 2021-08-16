@@ -1,4 +1,3 @@
-import Filter from "bad-words";
 export default class leaderBoard {
   baseURL = "https://us-central1-js-capstone-backend.cloudfunctions.net/api";
   gameId = "7AFpqYpUFBRMfnxrIuP6";
@@ -7,6 +6,8 @@ export default class leaderBoard {
   startSection = document.getElementById("start");
   nameForm = document.getElementById("nameForm");
   nameInput = document.getElementById("name");
+  usernameHeading = document.getElementById("username");
+
   scoresData = document.getElementById("scoresData");
   restartBtn = document.getElementById("restartBtn");
   startBtn = document.getElementById("startBtn");
@@ -14,47 +15,46 @@ export default class leaderBoard {
   caching = true;
   submitted = false;
   gaming = true;
+  cache = [];
 
   constructor() {
     this.restartBtn.addEventListener("click", this.onRestartBtnClick);
     this.nameForm.addEventListener("submit", this.nameFormSubmit);
+    this.startBtn.addEventListener("click", this.onRestartBtnClick);
     this.handleUserScore();
   }
 
-  onStart = () => {
+  onStart = (restartGame) => {
+    this.restartGame = restartGame;
     this.startSection.style.display = "grid";
   };
 
   nameFormSubmit = (event) => {
     event.preventDefault();
-    this.userName = this.nameInput.value;
+    this.username = this.nameInput.value;
+    this.usernameHeading.textContent = `Welcome ${this.username}`;
   };
 
   sendScore = () => {
-    const newRecord = { user: this.userName, score: this.userScore };
+    const newRecord = { user: this.username, score: this.userScore };
     this.talkToApi(false, newRecord).then(this.handleUserScore);
-    this.submit;
   };
 
   onRestartBtnClick = () => {
     this.submitted = false;
     this.scoreSection.style.display = "none";
+    this.startSection.style.display = "none";
     this.gaming = true;
-    s;
     this.restartGame();
   };
 
-  filter = new Filter();
-  cache = [];
-
-  init(score, restartGame) {
+  getLeaderBoard(score) {
     this.gaming = false;
-    if (this.userName) {
-      this.sendScore();
-      this.nameInput.value = this.userName;
-    }
     this.userScore = score;
-    this.restartGame = restartGame;
+    if (this.username) {
+      this.cache.push({ user: this.username, score: this.userScore });
+      this.sendScore();
+    }
     this.handleUserScore();
   }
 
@@ -64,14 +64,20 @@ export default class leaderBoard {
     } else {
       this.caching = false;
     }
-    if (this.cache) {
-      this.displayRanks(this.cache);
+
+    if (this.cache.length) {
+      this.arrangeRanks(this.cache);
     }
     this.talkToApi()
-      .then(this.sortInDescScores)
-      .then(this.filterRecords)
-      .then(this.getRanks)
-      .then(this.displayRanks);
+      .then((data) => data.result)
+      .then(this.arrangeRanks);
+  };
+
+  arrangeRanks = (result) => {
+    const sortedData = this.sortInDescScores(result);
+    const filteredData = this.filterRecords(sortedData);
+    const ranks = this.getRanks(filteredData);
+    this.displayRanks(ranks);
   };
 
   talkToApi = async (get = true, data) => {
@@ -92,7 +98,7 @@ export default class leaderBoard {
     return response.json();
   };
 
-  sortInDescScores = ({ result }) => {
+  sortInDescScores = (result) => {
     return result.sort((a, b) => b.score - a.score);
   };
 
@@ -124,9 +130,11 @@ export default class leaderBoard {
     const tr = () => {
       return document.createElement("tr");
     };
+
     if (this.cache.length) {
       this.scoresData.innerHTML = "";
     }
+
     ranks.forEach((user) => {
       const row = tr();
       const rank = td(user.rank);

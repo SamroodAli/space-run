@@ -330,7 +330,6 @@ class PreloadGame extends Phaser.Scene {
       key: "beeDead",
       frames: [{ key: "beeDead" }],
       frameRate: 10,
-      yoyo: true,
     });
 
     this.anims.create({
@@ -346,7 +345,6 @@ class PreloadGame extends Phaser.Scene {
       frameRate: 10,
       yoyo: true,
     });
-
     this.scene.start("Main");
   }
 }

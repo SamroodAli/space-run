@@ -11,10 +11,9 @@ class Main extends Background {
     this.gameOver = gameOver;
 
     if (this.gameOver) {
-      LeaderBoard.init(this.score, this.restartGame);
+      LeaderBoard.getLeaderBoard(this.score);
     } else {
-      console.log("Game start screen");
-      this.restartGame();
+      LeaderBoard.onStart(this.restartGame);
     }
   };
 
