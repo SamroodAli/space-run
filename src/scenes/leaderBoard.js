@@ -143,7 +143,7 @@ export default class leaderBoard {
       const name = td(user.user);
       const score = td(user.score);
       if (user.user === this.username) {
-        row.className = "table-dark";
+        row.className = "table-info";
       }
       row.append(rank, name, score);
       this.scoresData.appendChild(row);

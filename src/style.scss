@@ -17,7 +17,8 @@ h1 {
 
   tbody {
     display: block;
-    height: 75vh;
+    height: 55vh;
+    overflow: auto;
   }
 
   thead,
@@ -25,7 +26,6 @@ h1 {
     display: table;
     width: 100%;
     table-layout: fixed;
-    overflow: auto;
   }
 
   table {
