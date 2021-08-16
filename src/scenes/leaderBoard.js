@@ -140,6 +140,9 @@ export default class leaderBoard {
       const rank = td(user.rank);
       const name = td(user.user);
       const score = td(user.score);
+      if (user.user == this.username) {
+        row.className = "table-danger";
+      }
       row.append(rank, name, score);
       this.scoresData.appendChild(row);
     });
