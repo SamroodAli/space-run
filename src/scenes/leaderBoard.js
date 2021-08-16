@@ -1,20 +1,32 @@
 export default class leaderBoard {
   baseURL = "https://us-central1-js-capstone-backend.cloudfunctions.net/api";
+
   gameId = "7AFpqYpUFBRMfnxrIuP6";
 
   scoreSection = document.getElementById("scores");
+
   startSection = document.getElementById("start");
+
   nameForm = document.getElementById("nameForm");
+
   nameInput = document.getElementById("name");
+
   usernameHeading = document.getElementById("username");
 
   scoresData = document.getElementById("scoresData");
+
   restartBtn = document.getElementById("restartBtn");
+
   startBtn = document.getElementById("startBtn");
+
   scoresTable = document.getElementById("scoresTable");
+
   caching = true;
+
   submitted = false;
+
   gaming = true;
+
   cache = [];
 
   constructor() {
@@ -98,19 +110,16 @@ export default class leaderBoard {
     return response.json();
   };
 
-  sortInDescScores = (result) => {
-    return result.sort((a, b) => b.score - a.score);
-  };
+  sortInDescScores = (result) => result.sort((a, b) => b.score - a.score);
 
-  getRanks = (result) => {
-    return result.map((record, rank) => {
+  getRanks = (result) =>
+    result.map((record, rank) => {
       record.rank = rank + 1;
       return record;
     });
-  };
 
   filterRecords = (result) => {
-    let cache = {};
+    const cache = {};
     const ranks = result.filter((record) => {
       const isUnique = !cache[record.user];
       cache[record.user] = true;
@@ -127,9 +136,7 @@ export default class leaderBoard {
       return td;
     };
 
-    const tr = () => {
-      return document.createElement("tr");
-    };
+    const tr = () => document.createElement("tr");
 
     if (this.cache.length) {
       this.scoresData.innerHTML = "";
@@ -140,7 +147,7 @@ export default class leaderBoard {
       const rank = td(user.rank);
       const name = td(user.user);
       const score = td(user.score);
-      if (user.user == this.username) {
+      if (user.user === this.username) {
         row.className = "table-danger";
       }
       row.append(rank, name, score);

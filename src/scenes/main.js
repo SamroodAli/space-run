@@ -1,9 +1,10 @@
-import Background from "./background.js";
-import leaderBoard from "./leaderBoard";
-const LeaderBoard = new leaderBoard();
+import Background from './background.js';
+import LeaderBoard from './leaderBoard.js';
+
+const leaderBoard = new LeaderBoard();
 class Main extends Background {
   constructor() {
-    super("Main");
+    super('Main');
   }
 
   init = async ({ score = 0, gameOver = false }) => {
@@ -11,9 +12,9 @@ class Main extends Background {
     this.gameOver = gameOver;
 
     if (this.gameOver) {
-      LeaderBoard.getLeaderBoard(this.score);
+      leaderBoard.getLeaderBoard(this.score);
     } else {
-      LeaderBoard.onStart(this.restartGame);
+      leaderBoard.onStart(this.restartGame);
     }
   };
 
@@ -24,9 +25,10 @@ class Main extends Background {
   update() {
     super.update();
   }
+
   restartGame = () => {
     this.scene.stop();
-    this.scene.start("Game");
+    this.scene.start('Game');
   };
 }
 
