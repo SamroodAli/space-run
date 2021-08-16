@@ -1,7 +1,7 @@
 export default class leaderBoard {
   baseURL = "https://us-central1-js-capstone-backend.cloudfunctions.net/api";
 
-  gameId = "7AFpqYpUFBRMfnxrIuP6";
+  gameId = "FjBD535dQUhMhYtzbBbE";
 
   scoreSection = document.getElementById("scores");
 
