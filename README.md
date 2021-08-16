@@ -1,140 +1,88 @@
-# Bunny Jupper
+# SPACE RUN
+  Help this cute alien collect gems while killing bees and plants on the way !!.
+
+## Game Instructions
+  
+## Built With
+- CSS Bootstrap
+- Javascript
+- Webpack
+
+## Live Demo
+
+Click on the link below for accessing the deployed website.
+### [Play Space Run](https://github.com/SamroodAli/space-run.git/)</p>
 
 
-Welcome to my webpack starter for microverse
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+- A browser
+- Node js (optional)
 
 ### Setup
 
-clone repo and run
+All code below are for a terminal.
 
-```bash
+1. Clone repository: 
+```sh
+  $ git clone https://github.com/SamroodAli/space-run.git
+```
+2. Change directory inside project
+```sh
+cd to-do-list-app
+```
+3. In your terminal, run 
+```sh
 npm install
 ```
-
-### Project structure
-* Write your html in `src/index.html` file.
-* Write your javascript in `src/`. 
-* Write your styles in `src/index.scss` and import it in `index.js`
-```js
-import 'index.scss';
-```
-
-## For development
-You have live updates for javacript and scss in `localhost:3000`. Refresh after changes to html.
-
-1. Run this in your terminal and keep it running, the project will be available live with hot reloading at `localhost:3000`. Happy programming : )
-```bash
-npm run dev
-```
-2. Keep the import for scss in `index.js` if you want scss styles.
-```js
-import 'index.scss';
-```
-
-You can change localhost:port number in webpack/webpack.config.dev.js's port property
-```js
-  devServer: {
-    contentBase: "./dist",
-    hot: true,
-    port: "3000", //change here to your port
-  }
-```
-### Html in dist folder 
-if you want html in dist folder instead of src folder
-remove the plugin `HtmlWebpackPlugin`. You can also remove the `Dotenv` plugin if you are not using any `.env` file.
-
-```js
-  plugins: [
-    new Dotenv(),
-    new HtmlWebpackPlugin({         //remove this line
-      filename: "index.html",       // remove this line
-      template: "/src/index.html",  //remove this line
-      inject: true,                 // remove this line
-    }),                             // remove this line
-  ],
-```
-
-### Env file for environment variables such as API_KEY
-create an `.env` file for your variables
-```.env
-API_KEY=20r8304283yourkeyexample
-```
-and import it in js
-
-```js
-const API_KEY  = process.env.API_KEY
-```
-* Your eslint might use destructuring syntax `{ API_KEY }`. As said in the documentation for dotenv-webpack, please use the syntax I have shown above if the environment variable is `undefined`
-
-if you are not using any environment variables, you can also safely remove the `new Dotenv()` plugin from the webpack config files.
-
-## For linters
-All commands have --fix appended internally already.
-
-One command for all linters
-```
-npm run linters
-```
-
-### Standalone linters
-* eslint
-```bash
-npm run eslint
-```
-* stylelint
-```bash
-npm run lint
-```
-* webhint
-```bash
-npm run hint
-```
-
-## For production
-One command to create production code and publish it live on github. Run this after project completion. Also helpful for lighthouse linter on github pull request.
-
-```bash
-npm run publish
-```
-or seperately run,
-
-1. Build final production project build
-```bash
+4. After changes, run webpack to build production code.
+```sh
 npm run build
 ```
-2. Run in terminal to push your created`dist` folder to github to get a live website on github
-```bash
-npm run live
+5. You can now open the `index.html` file in `dist folder` in any browser.
+   
+6. You can also run the following to access the website on `http://localhost:5000` in your local computer.
+```sh
+npm run serve
 ```
+* Press `Ctrl + c` to exit the `npm run serve` session in your terminal.
 
-### Thank you for using the project.
+### Testing the application
+
+* Run the command to run tests
+```sh
+  npm run test
+```
+* Press `q` to exit the test session
+* Press `a` to run the tests again.
+
+## Author
+
+![Samrood Ali's GitHub stats](https://github-readme-stats.vercel.app/api?username=SamroodAli&count_private=true&theme=dark&show_icons=true)
+
+👤 **Samrood Ali**
+- GitHub: [@githubhandle](https://github.com/SamroodAli)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/samrood-ali/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/SamroodAli/space-run/issues).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
-## Author
+## Acknowledgments
 
-👤 **Samrood Ali**
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
 
-- GitHub: [@samroodAli](https://github.com/samroodAli)
-- LinkedIn: [Samrood-Ali](https://www.linkedin.com/in/samrood-ali/)
+## 📝 License
 
-
-### Attributions
-
-Some of the webpack Plugins and loaders are from the template found here :point_right: [Click me for the template](https://github.com/photonstorm/phaser3-project-template)
-
-
-
-
-
-
-
-
-
+This project is [MIT](/LICENSE) licensed.
