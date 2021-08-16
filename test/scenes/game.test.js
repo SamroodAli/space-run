@@ -1,5 +1,5 @@
-import LeaderBoard from "../../src/scenes/leaderBoard.js";
+import LeaderBoard from '../../src/scenes/leaderBoard.js';
 
-test("check game is an instance of Game", () => {
+test('check game is an instance of Game', () => {
   const actual = new LeaderBoard();
 });

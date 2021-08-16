@@ -1,7 +1,4 @@
 import Phaser from 'phaser';
-import Game from './scenes/game.js';
-import Main from './scenes/main.js';
-import PreloadGame from './scenes/preload.js';
 
 export const gameOptions = {
   platformSpeedRange: [400, 500],
@@ -34,7 +31,6 @@ export const gameConfig = {
   type: Phaser.Auto,
   width: window.innerWidth,
   height: window.innerHeight,
-  scene: [PreloadGame, Main, Game],
   physics: {
     default: 'arcade',
   },
