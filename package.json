@@ -4,7 +4,6 @@
   "description": "Project description",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack/webpack.config.prod.js",
     "live": "git subtree push --prefix dist origin gh-pages",
     "publish": "npm run build;npm run live",
@@ -13,7 +12,9 @@
     "lint": "npx stylelint '**/*.{css,scss}' --fix",
     "hint": "npx hint --telemetry=off .",
     "eslint": "npx eslint . --fix",
-    "linters": "npm run lint;npm run eslint;npm run hint"
+    "linters": "npm run lint;npm run eslint;npm run hint",
+    "test": "jest --watch"
+
   },
   "repository": {
     "type": "git",
