@@ -14,7 +14,6 @@
     "eslint": "npx eslint . --fix",
     "linters": "npm run lint;npm run eslint;npm run hint",
     "test": "jest --watch"
-
   },
   "repository": {
     "type": "git",
@@ -34,6 +33,7 @@
     "file-loader": "^6.2.0",
     "hint": "^6.1.4",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
     "sass": "^1.35.2",
     "sass-loader": "^12.1.0",
     "serve": "^12.0.0",
