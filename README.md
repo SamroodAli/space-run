@@ -2,7 +2,7 @@
   Help this cute alien collect gems while killing bees and plants on the way !!.
 
 ## Game Instructions
-[Click here to play the game](https://github.com/SamroodAli/space-run.git/)</p>
+[Click here to play the game](https://samroodali.github.io/space-run)</p>
 
 ![Start Screen](screenshots/startScreen.png)
 
@@ -49,7 +49,7 @@ Barnacles are a special deadly alien eating species of plants and can be found o
 ## Live Demo
 
 Click on the link below for accessing the deployed website.
-### [Play Space Run](https://github.com/SamroodAli/space-run.git/)</p>
+### [Play Space Run](https://samroodali.github.io/space-run)</p>
 
 
 ## Getting Started
