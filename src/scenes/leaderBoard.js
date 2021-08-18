@@ -56,6 +56,7 @@ export default class leaderBoard {
       localStorage.setItem("spaceRunUsername", this.username);
       this.onRestartBtnClick();
     }
+    return this.username;
   };
 
   sendScore = () => {

@@ -19,4 +19,9 @@ describe("testing the leaderboard class methods", () => {
   test("test onStart function in leaderboard to make start session visible", () => {
     expect(leaderboard.onStart()).toEqual("grid");
   });
+
+  test("test name form submission to get username", () => {
+    document.getElementById("nameInput").value = "Samrood";
+    expect(leaderboard.nameFormSubmit()).toEqual("Samrood");
+  });
 });
