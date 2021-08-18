@@ -7,7 +7,14 @@ const restartGame = jest.fn();
 const result = [
   { score: 1000, user: "samrood" },
   { score: 2000, user: "leon" },
+  { score: 900, user: "samrood" },
 ];
+const sortedResult = [
+  { rank: 1, score: 2000, user: "leon" },
+  { rank: 2, score: 1000, user: "samrood" },
+  { score: 900, user: "samrood" },
+];
+
 const expectedResult = [
   { rank: 1, score: 2000, user: "leon" },
   { rank: 2, score: 1000, user: "samrood" },
@@ -92,5 +99,10 @@ describe("testing the leaderboard class methods", () => {
   test("sort in desc order should sort scores in desc order", () => {
     const ranks = leaderboard.arrangeRanks(result);
     expect(ranks).toEqual(expectedResult);
+  });
+
+  test("sort in desc scores should sort scores in desc order", () => {
+    const ranks = leaderboard.sortInDescScores(result);
+    expect(ranks).toEqual(sortedResult);
   });
 });
