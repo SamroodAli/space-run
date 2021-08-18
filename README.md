@@ -23,14 +23,21 @@ The alien's main goal is to collect gems. Gems are worth `10000` points. There i
 
 
 ### Laser Gun
+
 ![Shoot lasers with you gun](screenshots/shootLasers.png)
+##### Loaded gun
 ![laser gun](src/assets/laser/raygunBig.png)
 You are in a differnet planet, you have no idea what is awaiting you. Your instincts tell you that collecting those gems might prove to be difficult. So you have decided to bring your trusty revolver laser gun. Press `Space key` to shoot. Other than the obvious laser, there is also an animation whenever you fire.
 Life is not that easy though. You can only fire `6 laser shots` before your gun is empty.An empty gun looks different. It looks, well, empty.
-![empty gun](src/assets/laser/raygunPurpleBig.png)
 
-Don't worry, you have unlimited lasers. Wait a while for the gun to be reloaded and start firing again. Make sure you are prudent with your shots and does not end up in a scenario where you have a giant bee heading towards you but your gun is reloading.
-### Enemies
+##### Empty gun
+
+![empty gun](src/assets/laser/raygunPurple.png)
+
+Don't worry, you have unlimited lasers. Wait a while for the gun to be reloaded and start firing again. Make sure you are prudent with your shots and does not end up in a scenario where you have a giant bee heading towards you but your gun is reloading.### Enemies
+
+### Enemies in the game
+
 ![Enemies in the game](screenshots/enemies.png)
 #### Bees
 ![Bees](src/assets/enemies/bee.png)
