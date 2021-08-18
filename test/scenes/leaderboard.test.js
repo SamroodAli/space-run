@@ -41,4 +41,8 @@ describe("testing the leaderboard class methods", () => {
     document.getElementById("restartBtn").click();
     expect(restartGame.mock.calls.length).toEqual(2);
   });
+
+  test("gaming should be true on restart", () => {
+    expect(leaderboard.gaming).toBeTruthy();
+  });
 });
