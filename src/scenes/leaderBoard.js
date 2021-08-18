@@ -15,11 +15,11 @@ export default class leaderBoard {
 
   restartBtn = document.getElementById("restartBtn");
 
+  menuBtn = document.getElementById("menuBtn");
+
   scoresTable = document.getElementById("scoresTable");
 
   caching = true;
-
-  submitted = false;
 
   gaming = true;
 
@@ -28,9 +28,16 @@ export default class leaderBoard {
   constructor() {
     this.restartBtn.addEventListener("click", this.onRestartBtnClick);
     this.nameForm.addEventListener("submit", this.nameFormSubmit);
+    this.menuBtn.addEventListener("click", this.menuBtnclick);
     this.handleUserScore();
     this.username = localStorage.getItem("spaceRunUsername");
   }
+
+  menuBtnclick = () => {
+    this.scoreSection.style.display = "none";
+    this.startSection.style.display = "grid";
+    this.gaming = true;
+  };
 
   onStart = (restartGame) => {
     this.restartGame = restartGame;
@@ -55,7 +62,6 @@ export default class leaderBoard {
   };
 
   onRestartBtnClick = () => {
-    this.submitted = false;
     this.scoreSection.style.display = "none";
     this.startSection.style.display = "none";
     this.gaming = true;
