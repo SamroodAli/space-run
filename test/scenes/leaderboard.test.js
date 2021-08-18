@@ -61,4 +61,25 @@ describe("testing the leaderboard class methods", () => {
     const scoreSection = document.getElementById("scores");
     expect(scoreSection.style.display).toEqual("grid");
   });
+
+  test("arrangeRanks should should call sort in desc scores", () => {
+    const newBoard = new Leaderboard();
+    newBoard.sortInDescScores = jest.fn(() => []);
+    newBoard.arrangeRanks();
+    expect(newBoard.sortInDescScores).toHaveBeenCalled();
+  });
+
+  test("arrangeRanks should should call filter records", () => {
+    const newBoard = new Leaderboard();
+    newBoard.filterRecords = jest.fn(() => []);
+    newBoard.arrangeRanks([]);
+    expect(newBoard.filterRecords).toHaveBeenCalled();
+  });
+
+  test("arrangRanks should should call getRanks records", () => {
+    const newBoard = new Leaderboard();
+    newBoard.getRanks = jest.fn(() => []);
+    newBoard.arrangeRanks([]);
+    expect(newBoard.getRanks).toHaveBeenCalled();
+  });
 });
