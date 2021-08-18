@@ -58,7 +58,9 @@ export default class leaderBoard {
 
   sendScore = () => {
     const newRecord = { user: this.username, score: this.userScore };
-    this.talkToApi(false, newRecord).then(this.handleUserScore);
+    this.talkToApi(false, newRecord)
+      .then(this.handleUserScore)
+      .catch((e) => console.log(e.message));
   };
 
   onRestartBtnClick = () => {
@@ -90,7 +92,8 @@ export default class leaderBoard {
     }
     this.talkToApi()
       .then((data) => data.result)
-      .then(this.arrangeRanks);
+      .then(this.arrangeRanks)
+      .catch((e) => console.log(e.message));
   };
 
   arrangeRanks = (result) => {

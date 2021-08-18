@@ -4,6 +4,7 @@ import document from "../document.js";
 
 const leaderboard = new Leaderboard();
 const restartGame = jest.fn();
+
 describe("testing the leaderboard class methods", () => {
   test("leaderboard construction is valid", () => {
     expect(leaderboard).toBeDefined();
@@ -32,17 +33,32 @@ describe("testing the leaderboard class methods", () => {
   });
 
   test("expect this.restart to be called in leaderboard on name submission", () => {
-    expect(restartGame.mock.calls.length).toEqual(1);
+    expect(restartGame).toHaveBeenCalled();
   });
 
   //sendScore
 
-  test("onRestBtnClick function should call restart game function", () => {
+  test("onRestartBtnClick function should call restart game function", () => {
     document.getElementById("restartBtn").click();
     expect(restartGame.mock.calls.length).toEqual(2);
   });
 
   test("gaming should be true on restart", () => {
     expect(leaderboard.gaming).toBeTruthy();
+  });
+
+  test("getLeaderboard should call handleuserscore", () => {
+    const newBoard = new Leaderboard();
+    newBoard.handleUserScore = jest.fn();
+    newBoard.getLeaderBoard();
+    expect(newBoard.handleUserScore.mock.calls.length);
+  });
+
+  test("handle user score should display score", () => {
+    leaderboard.caching = false;
+    leaderboard.gaming = false;
+    leaderboard.handleUserScore();
+    const scoreSection = document.getElementById("scores");
+    expect(scoreSection.style.display).toEqual("grid");
   });
 });
