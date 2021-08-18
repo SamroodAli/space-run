@@ -101,6 +101,7 @@ export default class leaderBoard {
     const filteredData = this.filterRecords(sortedData);
     const ranks = this.getRanks(filteredData);
     this.displayRanks(ranks);
+    return ranks;
   };
 
   talkToApi = async (get = true, data) => {

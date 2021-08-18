@@ -4,6 +4,14 @@ import document from "../document.js";
 
 const leaderboard = new Leaderboard();
 const restartGame = jest.fn();
+const result = [
+  { score: 1000, user: "samrood" },
+  { score: 2000, user: "leon" },
+];
+const expectedResult = [
+  { rank: 1, score: 2000, user: "leon" },
+  { rank: 2, score: 1000, user: "samrood" },
+];
 
 describe("testing the leaderboard class methods", () => {
   test("leaderboard construction is valid", () => {
@@ -35,8 +43,6 @@ describe("testing the leaderboard class methods", () => {
   test("expect this.restart to be called in leaderboard on name submission", () => {
     expect(restartGame).toHaveBeenCalled();
   });
-
-  //sendScore
 
   test("onRestartBtnClick function should call restart game function", () => {
     document.getElementById("restartBtn").click();
@@ -81,5 +87,10 @@ describe("testing the leaderboard class methods", () => {
     newBoard.getRanks = jest.fn(() => []);
     newBoard.arrangeRanks([]);
     expect(newBoard.getRanks).toHaveBeenCalled();
+  });
+
+  test("sort in desc order should sort scores in desc order", () => {
+    const ranks = leaderboard.arrangeRanks(result);
+    expect(ranks).toEqual(expectedResult);
   });
 });
