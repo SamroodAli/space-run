@@ -17,11 +17,13 @@ describe("testing the leaderboard class methods", () => {
   });
 
   test("test onStart function in leaderboard to make start session visible", () => {
-    expect(leaderboard.onStart()).toEqual("grid");
+    const restartGame = jest.fn();
+    expect(leaderboard.onStart(restartGame)).toEqual("grid");
   });
 
   test("test name form submission to get username", () => {
-    document.getElementById("nameInput").value = "Samrood";
-    expect(leaderboard.nameFormSubmit()).toEqual("Samrood");
+    document.getElementById("name").value = "Samrood";
+    document.getElementById("nameForm").submit();
+    expect(leaderboard.username).toEqual("Samrood");
   });
 });
