@@ -37,7 +37,6 @@ export default class leaderBoard {
     this.scoreSection.style.display = "none";
     this.startSection.style.display = "grid";
     this.gaming = true;
-    return this.startSection.style.display;
   };
 
   onStart = (restartGame) => {
@@ -46,7 +45,6 @@ export default class leaderBoard {
     if (this.username) {
       this.nameInput.value = this.username;
     }
-    return this.startSection.style.display;
   };
 
   nameFormSubmit = (event) => {
@@ -56,7 +54,6 @@ export default class leaderBoard {
       localStorage.setItem("spaceRunUsername", this.username);
       this.onRestartBtnClick();
     }
-    return this.username;
   };
 
   sendScore = () => {
