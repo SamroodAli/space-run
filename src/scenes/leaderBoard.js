@@ -1,23 +1,23 @@
 export default class leaderBoard {
-  baseURL = "https://us-central1-js-capstone-backend.cloudfunctions.net/api";
+  baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api';
 
-  gameId = "FjBD535dQUhMhYtzbBbE";
+  gameId = 'FjBD535dQUhMhYtzbBbE';
 
-  scoreSection = document.getElementById("scores");
+  scoreSection = document.getElementById('scores');
 
-  startSection = document.getElementById("start");
+  startSection = document.getElementById('start');
 
-  nameForm = document.getElementById("nameForm");
+  nameForm = document.getElementById('nameForm');
 
-  nameInput = document.getElementById("name");
+  nameInput = document.getElementById('name');
 
-  scoresData = document.getElementById("scoresData");
+  scoresData = document.getElementById('scoresData');
 
-  restartBtn = document.getElementById("restartBtn");
+  restartBtn = document.getElementById('restartBtn');
 
-  menuBtn = document.getElementById("menuBtn");
+  menuBtn = document.getElementById('menuBtn');
 
-  scoresTable = document.getElementById("scoresTable");
+  scoresTable = document.getElementById('scoresTable');
 
   caching = true;
 
@@ -26,22 +26,22 @@ export default class leaderBoard {
   cache = [];
 
   constructor() {
-    this.restartBtn.addEventListener("click", this.onRestartBtnClick);
-    this.nameForm.addEventListener("submit", this.nameFormSubmit);
-    this.menuBtn.addEventListener("click", this.menuBtnclick);
+    this.restartBtn.addEventListener('click', this.onRestartBtnClick);
+    this.nameForm.addEventListener('submit', this.nameFormSubmit);
+    this.menuBtn.addEventListener('click', this.menuBtnclick);
     this.handleUserScore();
-    this.username = localStorage.getItem("spaceRunUsername");
+    this.username = localStorage.getItem('spaceRunUsername');
   }
 
   menuBtnclick = () => {
-    this.scoreSection.style.display = "none";
-    this.startSection.style.display = "grid";
+    this.scoreSection.style.display = 'none';
+    this.startSection.style.display = 'grid';
     this.gaming = true;
   };
 
   onStart = (restartGame) => {
     this.restartGame = restartGame;
-    this.startSection.style.display = "grid";
+    this.startSection.style.display = 'grid';
     if (this.username) {
       this.nameInput.value = this.username;
     }
@@ -51,7 +51,7 @@ export default class leaderBoard {
     event.preventDefault();
     this.username = this.nameInput.value;
     if (this.username) {
-      localStorage.setItem("spaceRunUsername", this.username);
+      localStorage.setItem('spaceRunUsername', this.username);
       this.onRestartBtnClick();
     }
   };
@@ -62,8 +62,8 @@ export default class leaderBoard {
   };
 
   onRestartBtnClick = () => {
-    this.scoreSection.style.display = "none";
-    this.startSection.style.display = "none";
+    this.scoreSection.style.display = 'none';
+    this.startSection.style.display = 'none';
     this.gaming = true;
     this.restartGame();
   };
@@ -80,7 +80,7 @@ export default class leaderBoard {
 
   handleUserScore = () => {
     if (!this.caching && !this.gaming) {
-      this.scoreSection.style.display = "grid";
+      this.scoreSection.style.display = 'grid';
     } else {
       this.caching = false;
     }
@@ -102,29 +102,28 @@ export default class leaderBoard {
 
   talkToApi = async (get = true, data) => {
     const fetchConfig = {
-      method: get ? "GET" : "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
+      method: get ? 'GET' : 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     };
     const response = await fetch(
       `${this.baseURL}/games/${this.gameId}/scores`,
-      fetchConfig
+      fetchConfig,
     );
     return response.json();
   };
 
   sortInDescScores = (result) => result.sort((a, b) => b.score - a.score);
 
-  getRanks = (result) =>
-    result.map((record, rank) => {
-      record.rank = rank + 1;
-      return record;
-    });
+  getRanks = (result) => result.map((record, rank) => {
+    record.rank = rank + 1;
+    return record;
+  });
 
   filterRecords = (result) => {
     const cache = {};
@@ -139,15 +138,15 @@ export default class leaderBoard {
 
   displayRanks = (ranks) => {
     const td = (data) => {
-      const td = document.createElement("td");
+      const td = document.createElement('td');
       td.textContent = data;
       return td;
     };
 
-    const tr = () => document.createElement("tr");
+    const tr = () => document.createElement('tr');
 
     if (this.cache.length) {
-      this.scoresData.innerHTML = "";
+      this.scoresData.innerHTML = '';
     }
 
     ranks.forEach((user) => {
@@ -156,7 +155,7 @@ export default class leaderBoard {
       const name = td(user.user);
       const score = td(user.score);
       if (user.user === this.username) {
-        row.className = "table-info";
+        row.className = 'table-info';
       }
       row.append(rank, name, score);
       this.scoresData.appendChild(row);
