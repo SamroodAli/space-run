@@ -46,6 +46,7 @@ export default class leaderBoard {
     if (this.username) {
       this.nameInput.value = this.username;
     }
+    return this.startSection.style.display;
   };
 
   nameFormSubmit = (event) => {
