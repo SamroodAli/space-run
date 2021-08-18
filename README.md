@@ -2,7 +2,7 @@
   Help this cute alien collect gems while killing bees and plants on the way !!.
 
 ## Game Instructions
-[Click here to play the game](https://samroodali.github.io/space-run)</p>
+[Click here to play the game](https://samroodali.github.io/space-run/)</p>
 
 ![Start Screen](screenshots/startScreen.png)
 
@@ -10,6 +10,8 @@ The game asks you for your name before playing. Enter your name as it helps have
 Once you have entered your name, click `start` or press `Enter` to start the game.
 
 ![Jump platform to platforms](screenshots/jumpPlatforms.png)
+
+Click `Left mouse button` to jump. Press it again to jump mid air.
 Surive by jumping from platforms to platforms. You will lose the game if you fall off a platform or jump but do not make it to the next platform. Fret not, for you can jump with a mouse click. Feel like a jump is not enough, jump again. You got double jumps before landing the next platform.
 
 
@@ -49,7 +51,7 @@ Barnacles are a special deadly alien eating species of plants and can be found o
 ## Live Demo
 
 Click on the link below for accessing the deployed website.
-### [Play Space Run](https://samroodali.github.io/space-run)</p>
+### [Play Space Run](https://samroodali.github.io/space-run/)</p>
 
 
 ## Getting Started
@@ -70,7 +72,7 @@ All code below are for a terminal.
 ```
 2. Change directory inside project
 ```sh
-cd to-do-list-app
+cd space-run
 ```
 3. In your terminal, run 
 ```sh
