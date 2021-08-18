@@ -37,6 +37,7 @@ export default class leaderBoard {
     this.scoreSection.style.display = "none";
     this.startSection.style.display = "grid";
     this.gaming = true;
+    return this.startSection.style.display;
   };
 
   onStart = (restartGame) => {
