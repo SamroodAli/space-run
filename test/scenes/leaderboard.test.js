@@ -15,7 +15,7 @@ const sortedResult = [
   { score: 900, user: "samrood" },
 ];
 
-const expectedResult = [
+const filteredResult = [
   { rank: 1, score: 2000, user: "leon" },
   { rank: 2, score: 1000, user: "samrood" },
 ];
@@ -98,11 +98,24 @@ describe("testing the leaderboard class methods", () => {
 
   test("sort in desc order should sort scores in desc order", () => {
     const ranks = leaderboard.arrangeRanks(result);
-    expect(ranks).toEqual(expectedResult);
+    expect(ranks).toEqual(filteredResult);
   });
 
   test("sort in desc scores should sort scores in desc order", () => {
     const ranks = leaderboard.sortInDescScores(result);
     expect(ranks).toEqual(sortedResult);
+  });
+
+  test("filter records filters redundant names", () => {
+    const ranks = leaderboard.filterRecords(sortedResult);
+    expect(ranks).toEqual(filteredResult);
+  });
+
+  test("display Ranks function should display ranks in table", () => {
+    leaderboard.displayRanks(filteredResult);
+    const scoresData = document.getElementById("scoresData");
+    expect(scoresData.innerHTML).toEqual(
+      "<tr><td>1</td><td>leon</td><td>2000</td></tr><tr><td>2</td><td>samrood</td><td>1000</td></tr>"
+    );
   });
 });
