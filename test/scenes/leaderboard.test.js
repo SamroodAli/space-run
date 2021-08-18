@@ -3,6 +3,7 @@ import Leaderboard from "../../src/scenes/leaderBoard.js";
 import document from "../document.js";
 
 const leaderboard = new Leaderboard();
+const restartGame = jest.fn();
 describe("testing the leaderboard class methods", () => {
   test("leaderboard construction is valid", () => {
     expect(leaderboard).toBeDefined();
@@ -17,7 +18,6 @@ describe("testing the leaderboard class methods", () => {
   });
 
   test("test onStart function in leaderboard to make start session visible", () => {
-    const restartGame = jest.fn();
     expect(leaderboard.onStart(restartGame)).toEqual("grid");
   });
 
@@ -25,5 +25,9 @@ describe("testing the leaderboard class methods", () => {
     document.getElementById("name").value = "Samrood";
     document.getElementById("nameForm").submit();
     expect(leaderboard.username).toEqual("Samrood");
+  });
+
+  test("expect this.restart to be called in leaderboard on name submission", () => {
+    expect(restartGame.mock.calls.length).toEqual(1);
   });
 });
