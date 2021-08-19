@@ -1,10 +1,10 @@
-import "./style.scss";
-import Phaser from "phaser";
-import Game from "./scenes/Game.js";
+import './style.scss';
+import Phaser from 'phaser';
+import { gameConfig } from './gameOptions.js';
+import Game from './scenes/game.js';
+import Main from './scenes/main.js';
+import PreloadGame from './scenes/preload.js';
 
-export default new Phaser.Game({
-  type: Phaser.AUTO,
-  width: 400,
-  height: 640,
-  scene: Game,
-});
+gameConfig.scene = [PreloadGame, Main, Game];
+
+export default new Phaser.Game(gameConfig);
